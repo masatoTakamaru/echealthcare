@@ -22,3 +22,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('/', [Controllers\IndexController::class, 'index'])->name('index');
+Route::get('cateogry/{cat_id}/{catsub_id?}', [Controllers\CategoryController::class, 'index'])->name('category');
+Route::get('{id}/single', [Controllers\SingleController::class, 'index'])->name('single');
+
+Route::resource('/cart', 'App\Http\Controllers\CartController');
+Route::get('/checkout', [Controllers\CheckoutController::class, 'index'])->name('checkout');
+
