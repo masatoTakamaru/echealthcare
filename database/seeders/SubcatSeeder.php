@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Subcat;
 
 class SubcatSeeder extends Seeder
 {
@@ -16,8 +15,6 @@ class SubcatSeeder extends Seeder
      */
     public function run()
     {
-        Subcat::truncate();
-
         $catsubs = [
             [
                 '化粧下地',

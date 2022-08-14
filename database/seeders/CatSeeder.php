@@ -16,8 +16,6 @@ class CatSeeder extends Seeder
      */
     public function run()
     {
-        Cat::truncate();
-
         $names = [
             'メイク・フェイスケア',
             'スキンケア',

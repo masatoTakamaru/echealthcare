@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('productphotos', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('product_id')->comment('製品ID');
+            $table->string('url')->comment('画像のURL');
             $table->timestamps();
         });
     }
