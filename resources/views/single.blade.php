@@ -47,4 +47,11 @@
         {{ $product->spec }}
     </div>
 </section>
+<nav class="ml-4">
+    <ul class="subcats">
+        @foreach($product->subcat->cat->subcats as $subcat)
+            <li><a href="{{ route('category', ['cat_id' => $subcat->cat->id, 'subcat_id' => $subcat->id]) }}">{{ $subcat->name }}</a></li>        
+        @endforeach
+    </ul>
+</nav>
 </x-guest-layout>

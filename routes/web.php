@@ -18,6 +18,12 @@ Route::get('cateogry/{cat_id}/{subcat_id?}', 'App\Http\Controllers\CatController
 Route::get('{id}/single', 'App\Http\Controllers\SingleController@index')->name('single');
 Route::resource('/cart', 'App\Http\Controllers\CartController');
 Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('checkout');
+Route::post('/checkout', 'App\Http\Controllers\CheckoutController@succeed')
+    ->middleware(['auth'])
+    ->name('checkout.succeed');
+Route::resource('users', 'App\Http\Controllers\UserController')
+    ->middleware(['auth'])
+    ->only(['edit', 'update', 'destroy']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

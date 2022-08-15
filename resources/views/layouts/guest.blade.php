@@ -43,12 +43,12 @@
         </li>
     @endunless
     <li>
-        <a href="#">マイアカウント</a>
-    </li>
-    <li>
         <a href="#">お問い合わせ</a>
     </li>
     @if(Auth::id())
+        <li>
+            <a href="#">マイアカウント</a>
+        </li>
         <li>
             <form action="{{ route('logout')}}" method="POST">
                 @csrf

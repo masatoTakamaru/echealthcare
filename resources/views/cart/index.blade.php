@@ -4,7 +4,7 @@
 </section>
 <section class="m-4">
     @if($items->count() == 0)
-        <p>商品はありません。</p>
+        <p class="font-alert">商品はありません。</p>
     @else
         <table>
         <tbody>
@@ -14,7 +14,12 @@
             <td>
                 <ul>
                 <li>{{ $item->name }}</li>
-                <li class="text-price">{{ number_format($item->price) }}&nbsp;円</li>
+                <li>個数&nbsp;:&nbsp;{{ $item->quantity }}</li>
+                @if($item->quantity == 1) 
+                    <li class="text-price">{{ number_format($item->price) }}&nbsp;円</li>
+                @else
+                    <li><span class="text-price">{{ number_format($item->getPriceSum()) }}&nbsp;円</span>(1個{{ number_format($item->price) }}円)</li>
+                @endif
                 <li>
                     <form action="{{ route('cart.destroy', ['cart' => $item->id]) }}" method="POST">
                         @csrf
@@ -39,7 +44,7 @@
         </tr>
         </tbody>
         </table>
-        <div class="my-4 text-center">
+        <div class="mt-8 my-4 text-center">
             <a class="bg-primary py-2 px-10 rounded shadow" href="{{ route('checkout') }}">レジに進む</a>
         </div>
     @endif

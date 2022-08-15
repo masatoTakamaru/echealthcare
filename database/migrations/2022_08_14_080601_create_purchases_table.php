@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('product_id');
             $table->bigInteger('user_id');
+            $table->integer('quantity');
+            $table->integer('price');
+            $table->integer('pricesum');
             $table->timestamps();
         });
     }

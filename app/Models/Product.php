@@ -23,11 +23,17 @@ class Product extends Model
 
     public function subcat()
     {
-        return $this->belongsTo(Catsub::class);
+        return $this->belongsTo(Subcat::class);
     }
 
     public function productphotos()
     {
         return $this->hasMany(Productphoto::class);
     }
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
+
 }
