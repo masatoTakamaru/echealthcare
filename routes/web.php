@@ -21,7 +21,7 @@ Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('
 Route::post('/checkout', 'App\Http\Controllers\CheckoutController@succeed')
     ->middleware(['auth'])
     ->name('checkout.succeed');
-Route::resource('users', 'App\Http\Controllers\UserController')
+Route::resource('user', 'App\Http\Controllers\UserController')
     ->middleware(['auth'])
     ->only(['edit', 'update', 'destroy']);
 
