@@ -15,7 +15,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        if(Auth::id()) \Cart::session(Auth:id());
+        if(Auth::id()) \Cart::session(Auth::id());
         $items = \Cart::getContent();
 
         return view('cart.index', [
@@ -43,7 +43,7 @@ class CartController extends Controller
     {
         $product = Product::find((int)$request->id);
         $items = \Cart::getContent();
-        if(Auth::id()) \Cart::session(Auth:id());
+        if(Auth::id()) \Cart::session(Auth::id());
         \Cart::add([
             'id' => uniqid(),
             'name' => $product->name,

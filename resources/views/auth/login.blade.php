@@ -1,6 +1,8 @@
 <x-guest-layout>
     <x-auth-card>
-        <x-slot name="logo"></x-slot>
+        <x-slot name="logo">
+            ログイン
+        </x-slot>
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 

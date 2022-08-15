@@ -85,7 +85,7 @@
     </ul>
     </nav>
     <div class="flex flex-wrap mb-12">
-        <article class="md:order-2 mb-8">
+        <article class="w-full md:order-2 mb-8">
             {{ $slot }}
         </article>
         <aside class="w-full md:order-1">
