@@ -8,18 +8,18 @@ use App\Models\Cat;
 
 class CatController extends Controller
 {
-    public function index($cat_id, $catsub_id = null)
+    public function index($cat_id, $subcat_id = null)
     {
         $cat = Cat::find($cat_id);
-        if ($catsub_id) {
-            $catsub = $cat->catsubs->find($catsub_id);
-            $products = $catsub->products()
+        if ($subcat_id) {
+            $subcat = $cat->subcats->find($subcat_id);
+            $products = $subcat->products()
                 ->orderBy('id', 'desc');
             $amount = $products->count();
             
-            return view('catsub', [
-                'cat' => $catsub->cat,
-                'catsub' => $catsub,
+            return view('subcat', [
+                'cat' => $subcat->cat,
+                'subcat' => $subcat,
                 'amount' => $amount,
                 'products' => $products->paginate(12)->onEachSide(0),
             ]);

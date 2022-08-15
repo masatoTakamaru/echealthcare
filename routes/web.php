@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
-Route::get('cateogry/{cat_id}/{catsub_id?}', 'App\Http\Controllers\CatController@index')->name('category');
+Route::get('cateogry/{cat_id}/{subcat_id?}', 'App\Http\Controllers\CatController@index')->name('category');
 Route::get('{id}/single', 'App\Http\Controllers\SingleController@index')->name('single');
 Route::resource('/cart', 'App\Http\Controllers\CartController');
 Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('checkout');

@@ -107,6 +107,14 @@
   border-top: lightgray 1px solid;
 }
 
+.subcats li {
+  border-bottom: lightgray 1px solid;
+  padding: 10px 10px;
+}
+.subcats li:first-child {
+  border-top: lightgray 1px solid;
+}
+
 @media screen and (max-width: 768px) {
   aside {
     order: 2;
