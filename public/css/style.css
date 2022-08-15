@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Petit+Formal+Script&display=swap");
+.text-pink {
+  color: rgb(252, 236, 238);
+}
+
+.text-yellow {
+  color: rgb(250, 248, 215);
+}
+
+.text-blue {
+  color: rgb(209, 234, 234);
+}
+
+.text-red {
+  color: rgb(229, 125, 117);
+}
+
+.text-brown {
+  color: rgb(229, 125, 117);
+}
+
+.text-darkbrown {
+  color: rgb(139, 109, 37);
+}
+
+.text-price {
+  color: #b12704;
+  font-weight: 700;
+}
+
+.bg-pink {
+  background-color: rgb(252, 236, 238);
+}
+
+.bg-yellow {
+  background-color: rgb(250, 248, 215);
+}
+
+.bg-blue {
+  background-color: rgb(209, 234, 234);
+}
+
+.bg-red {
+  background-color: rgb(229, 125, 117);
+}
+
+.bg-brown {
+  background-color: rgb(200, 155, 53);
+}
+
+.shoppingcart-counter {
+  position: relative;
+  top: -8px;
+  left: -12px;
+  color: white;
+  font-size: 10px;
+  padding: 1px 6px;
+  background-color: #b12704;
+  border-radius: 20px;
+}
+
+.HeaderHamburger li {
+  border-bottom: lightgray 1px solid;
+  padding: 10px 30px;
+}
+
+.topImage {
+  height: 250px;
+  background-image: url("/top-image.webp");
+  background-size: cover;
+  opacity: 0.9;
+}
+
+.topLogo {
+  padding-top: 30px;
+  text-align: center;
+}
+.topLogo a {
+  font-family: "Petit Formal Script", cursive;
+  color: rgb(139, 109, 37);
+  font-size: 56px;
+  text-decoration: none;
+  text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.8);
+}
+
+.headerUtilNav {
+  margin: 10px 10px;
+  line-height: 10px;
+}
+.headerUtilNav li {
+  border-left: lightgray 1px solid;
+  padding: 10px 10px;
+}
+.headerUtilNav li:first-child {
+  border: none;
+}
+
+.categories li {
+  border-bottom: lightgray 1px solid;
+  padding: 10px 10px;
+}
+.categories li:first-child {
+  border-top: lightgray 1px solid;
+}
+
+@media screen and (max-width: 768px) {
+  aside {
+    order: 2;
+  }
+  article {
+    order: 1;
+  }
+}/*# sourceMappingURL=style.css.map */

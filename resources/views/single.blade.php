@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
 <section>
     <div class="singleHeader">
         {{ $product->header }}
@@ -49,4 +49,4 @@
         {{ $product->spec }}
     </div>
 </section>
-</x-app-layout>
+</x-guest-layout>

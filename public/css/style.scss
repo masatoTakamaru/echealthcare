@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Petit+Formal+Script&display=swap");
+
+$color-pink: rgb(252, 236, 238);
+$color-yellow: rgb(250, 248, 215);
+$color-blue: rgb(209, 234, 234);
+$color-red: rgb(229, 125, 117);
+$color-brown: rgb(200, 155, 53);
+$color-darkbrown: rgb(139, 109, 37);
+
+.text-pink {
+    color: $color-pink;
+}
+
+.text-yellow {
+    color: $color-yellow;
+}
+
+.text-blue {
+    color: $color-blue;
+}
+
+.text-red {
+    color: $color-red;
+}
+
+.text-brown {
+    color: $color-red;
+}
+
+.text-darkbrown {
+    color: $color-darkbrown;
+}
+
+.text-price {
+    color: #b12704;
+    font-weight: 700;
+}
+
+.bg-pink {
+    background-color: $color-pink;
+}
+
+.bg-yellow {
+    background-color: $color-yellow;
+}
+
+.bg-blue {
+    background-color: $color-blue;
+}
+
+.bg-red {
+    background-color: $color-red;
+}
+
+.bg-brown {
+    background-color: $color-brown;
+}
+
+.shoppingcart-counter {
+    position: relative;
+    top: -8px;
+    left: -12px;
+    color: white;
+    font-size: 10px;
+    padding: 1px 6px;
+    background-color: #b12704;
+    border-radius: 20px;
+}
+
+.HeaderHamburger {
+    li {
+        border-bottom: lightgray 1px solid;
+        padding: 10px 30px;
+    }
+}
+
+.topImage {
+    height: 250px;
+    background-image: url("/top-image.webp");
+    background-size: cover;
+    opacity: 0.9;
+}
+
+.topLogo {
+    padding-top: 30px;
+    text-align: center;
+    a {
+        font-family: "Petit Formal Script", cursive;
+        color: $color-darkbrown;
+        font-size: 56px;
+        text-decoration: none;
+        text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.8);    
+    }
+}
+
+.headerUtilNav {
+    margin: 10px 10px;
+    line-height: 10px;
+    li {
+        border-left: lightgray 1px solid;
+        padding: 10px 10px;
+    }
+    li:first-child {
+        border: none;
+    }
+}
+
+.categories {
+    li {
+        border-bottom: lightgray 1px solid;
+        padding: 10px 10px;
+    }
+    li:first-child {
+        border-top: lightgray 1px solid;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    aside {
+        order: 2;
+    }
+    article {
+        order: 1;
+    }
+}

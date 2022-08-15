@@ -13,20 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
+Route::get('cateogry/{cat_id}/{catsub_id?}', 'App\Http\Controllers\CatController@index')->name('category');
+Route::get('{id}/single', 'App\Http\Controllers\SingleController@index')->name('single');
+Route::resource('/cart', 'App\Http\Controllers\CartController');
+Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('checkout');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
-
-Route::get('/', [Controllers\IndexController::class, 'index'])->name('index');
-Route::get('cateogry/{cat_id}/{catsub_id?}', [Controllers\CategoryController::class, 'index'])->name('category');
-Route::get('{id}/single', [Controllers\SingleController::class, 'index'])->name('single');
-
-Route::resource('/cart', 'App\Http\Controllers\CartController');
-Route::get('/checkout', [Controllers\CheckoutController::class, 'index'])->name('checkout');
 

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -27,7 +28,7 @@ class UserSeeder extends Seeder
             if($key == 0) continue;
             DB::table('users')->insert([
                 'email' => trim($row[0]),
-                'password' => trim($row[1]),
+                'password' => Hash::make(trim($row[1])),
                 'last_name' => trim($row[2]),
                 'first_name' => trim($row[3]),
                 'last_name_kana' => trim($row[4]),

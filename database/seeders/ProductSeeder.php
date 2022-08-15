@@ -110,15 +110,11 @@ class ProductSeeder extends Seeder
                 for($i = 0; $i <= $product_number; $i++) {
                     DB::table('products')->insert([
                         'header' => '今なら' . rand(1,8) . '0%OFF!!',
-                        'name' => '製品' . $count,
+                        'name' => '製品' . $count . fake()->text(100),
                         'serial' => sprintf('%1$09d', $count),
                         'price' => rand(1, 99) * 100 + 98,
                         'inventory' => rand(0, 25),
-                        'spec' => '<規格>' .
-                                    '\n・・・・・・・・・・' .
-                                    '\n・・・・・・・・・・' .
-                                    '\n・・・・・・・・・・' .
-                                    '\n・・・・・・・・・・',
+                        'spec' => '規格：' . fake()->realText(200),
                         'cat_id' => $cat_num,
                         'subcat_id' => $catsub_count,
                         'maker' => $makers[array_rand($makers)],

@@ -1,9 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            <p>ユーザーの新規登録</p>
         </x-slot>
 
         <!-- Validation Errors -->
@@ -13,24 +11,53 @@
             @csrf
 
             <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
-
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+            <div class="flex">
+                <div class="mr-2">
+                    <x-label for="last_name" value="姓" />
+                    <x-input class="block mt-1 w-full border p-2" type="text" name="last_name" :value="old('last_name')" required autofocus />
+                </div>
+                <div>
+                    <x-label for="first_name" value="名" />
+                    <x-input class="block mt-1 w-full border p-2" type="text" name="first_name" :value="old('first_name')" required />
+                </div>
             </div>
-
+            <div class="flex mt-4">
+                <div class="mr-2">
+                    <x-label for="last_name_kana" value="姓フリガナ" />
+                    <x-input class="block mt-1 w-full border p-2" type="text" name="last_name_kana" :value="old('last_name_kana')" required autofocus />
+                </div>
+                <div>
+                    <x-label for="first_name_kana" value="名フリガナ" />
+                    <x-input class="block mt-1 w-full border p-2" type="text" name="first_name_kana" :value="old('first_name_kana')" required />
+                </div>
+            </div>
+            <!-- phone -->
+            <div>
+                <x-label for="phone" value="電話番号" />
+                <x-input class="block mt-1 w-full border p-2" type="text" name="phone" :value="old('phone')" required />
+            </div>
+            <!-- zip -->
+            <div>
+                <x-label for="zip" value="郵便番号" />
+                <x-input class="block mt-1 w-full border p-2" type="text" name="zip" :value="old('zip')" required />
+            </div>
+            <!-- address -->
+            <div>
+                <x-label for="address" value="住所" />
+                <x-input class="block mt-1 w-full border p-2" type="text" name="address" :value="old('address')" required />
+            </div>
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-input id="email" class="block mt-1 w-full border p-2" type="email" name="email" :value="old('email')" required />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />
 
-                <x-input id="password" class="block mt-1 w-full"
+                <x-input id="password" class="block mt-1 w-full border p-2"
                                 type="password"
                                 name="password"
                                 required autocomplete="new-password" />
@@ -40,7 +67,7 @@
             <div class="mt-4">
                 <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
+                <x-input id="password_confirmation" class="block mt-1 w-full border p-2"
                                 type="password"
                                 name="password_confirmation" required />
             </div>
