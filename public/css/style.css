@@ -48,6 +48,10 @@
   background-color: rgb(200, 155, 53);
 }
 
+.bg-primary {
+  background-color: rgb(255, 216, 20);
+}
+
 .shoppingcart-counter {
   position: relative;
   top: -8px;

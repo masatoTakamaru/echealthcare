@@ -6,6 +6,7 @@ $color-blue: rgb(209, 234, 234);
 $color-red: rgb(229, 125, 117);
 $color-brown: rgb(200, 155, 53);
 $color-darkbrown: rgb(139, 109, 37);
+$color-primary: rgb(255,216,20);
 
 .text-pink {
     color: $color-pink;
@@ -54,6 +55,10 @@ $color-darkbrown: rgb(139, 109, 37);
 
 .bg-brown {
     background-color: $color-brown;
+}
+
+.bg-primary {
+    background-color: $color-primary;
 }
 
 .shoppingcart-counter {
