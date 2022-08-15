@@ -24,6 +24,9 @@ Route::post('/checkout', 'App\Http\Controllers\CheckoutController@succeed')
 Route::resource('user', 'App\Http\Controllers\UserController')
     ->middleware(['auth'])
     ->only(['edit', 'update', 'destroy']);
+Route::get('user', 'App\Http\Controllers\UserController@updatesucceed')
+    ->middleware(['auth'])
+    ->name('user.updatesucceed');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

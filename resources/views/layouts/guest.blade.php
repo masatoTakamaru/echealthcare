@@ -9,8 +9,8 @@
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
 </head>
-<body class="pt-10">
-<header class="fixed top-0 z-10 w-full">
+<body>
+<header class="w-full">
     <div class="bg-pink h-10 px-2 flex justify-between items-center">
         <a class="text-darkbrown" href="/">健康美容アイテム通販サイトサンプル</a>
         <div class="flex">
