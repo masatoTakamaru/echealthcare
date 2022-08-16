@@ -67,16 +67,21 @@
   border-bottom: lightgray 1px solid;
   padding: 10px 30px;
 }
+.HeaderHamburger li:first-child {
+  border-top: lightgray 1px solid;
+}
 
 .topImage {
   height: 250px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
   background-image: url("/top-image.webp");
   background-size: cover;
   opacity: 0.9;
 }
 
 .topLogo {
-  padding-top: 30px;
   text-align: center;
 }
 .topLogo a {
@@ -119,11 +124,21 @@
   color: #b12704;
 }
 
-@media screen and (max-width: 768px) {
+aside {
+  width: 100%;
+}
+
+article {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
   aside {
-    order: 2;
+    order: 1;
+    width: 280px;
   }
   article {
-    order: 1;
+    order: 2;
+    max-width: 900px;
   }
 }/*# sourceMappingURL=style.css.map */

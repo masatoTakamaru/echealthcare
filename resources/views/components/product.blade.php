@@ -1,4 +1,4 @@
-<div class="product-card w-5/12 p-2">
+<div class="product-card w-5/12 md:w-40 p-2">
     <div class="product-card-inner">
         <div class="product-header text-brown">
             {{ $product->header }}
