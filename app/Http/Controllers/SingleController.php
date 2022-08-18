@@ -23,6 +23,7 @@ class SingleController extends Controller
             'product' => $product,
             'main_photo' => $main_photo,
             'max_quantity' => $max_quantity,
+            'cat' => $product->subcat->cat,
         ]);
     }
 }

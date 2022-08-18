@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
 <section class="p-8 md:flex md:justify-center">
     <div class="md:w-96">
         <h1>ログイン</h1>
@@ -8,14 +8,14 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('admin.login') }}">
             @csrf
 
-            <!-- Email Address -->
+            <!-- admin Name -->
             <div>
-                <x-label for="email" :value="__('Email')" />
+                <x-label for="name" :value="__('Adminname')" />
 
-                <x-input id="email" class="block mt-1 p-2 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="name" class="block mt-1 p-2 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
             <!-- Password -->
@@ -38,7 +38,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('admin.password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
@@ -50,4 +50,4 @@
         </form>
     </div>
 </section>
-</x-guest-layout>
+</x-app-layout>

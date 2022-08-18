@@ -1,9 +1,7 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <p>ユーザーの新規登録</p>
-        </x-slot>
-
+<section class="p-8 md:flex md:justify-center">
+    <div class="md:w-96">
+        <h1>ユーザーの新規登録</h1>
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
@@ -82,5 +80,6 @@
                 </x-button>
             </div>
         </form>
-    </x-auth-card>
+    </div>
+</section>
 </x-guest-layout>

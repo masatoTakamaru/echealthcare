@@ -5,24 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ asset('font-awesome-4.7.0/css/font-awesome.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}" />
+    <!-- tailwind
     <script src="https://cdn.tailwindcss.com"></script>
+    -->
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
 <header class="w-full">
     <div class="bg-pink h-10 px-2 flex justify-between items-center">
         <a class="text-darkbrown" href="/">健康美容アイテム通販サイトサンプル</a>
-        <div class="flex">
+        <div class="flex items-center">
             <div class="mr-4">
                 <a href="{{ route('cart.index') }}">
                     <i class="fa fa-shopping-cart text-xl text-darkbrown" aria-hidden="true"></i>
                     <span class="shoppingcart-counter text-darkbrown">{{ $cart_items->count() }}</span>
                 </a>
             </div>
-            <button class="mr-2" id="toggleMenuButton">
+            <button class="mr-2 md:hidden" id="toggleMenuButton">
                 <i class="fa fa-bars text-xl text-darkbrown" aria-hidden="true"></i>
             </button>
+            <!-- responsive menu -->
+            <nav class="mr-6 hidden md:block">
+                <div class="flex items-center">
+                    @if(Auth::id())
+                        <span class="bg-primary-blue p-2 mr-6">
+                            {{ Auth::user()->last_name }}&nbsp;{{ Auth::user()->first_name }}
+                        </span>
+                    @endif
+                    <ul class="flex">
+                    @unless(Auth::id())
+                        <li>
+                            <a class="mr-4" href="{{ route('login') }}">ログイン&nbsp;<i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a class="mr-4" href="{{ route('register') }}">会員登録</a>
+                        </li>
+                    @endunless
+                    <li>
+                        <a class="mr-4" href="#">お問い合わせ</a>
+                    </li>
+                    @if(Auth::id())
+                        <li>
+                            <a class="mr-4" href="{{ route('user.edit', ['user' => Auth::user()->id]) }}">マイアカウント</a>
+                        </li>
+                        <li>
+                            <form action="{{ route('logout')}}" method="POST">
+                                @csrf
+                                <input type="submit" value="ログアウト">
+                            </form>
+                        </li>
+                    @endif
+                    </ul>
+                </div>
+            </nav>
         </div>
     </div>
 </header>
@@ -96,7 +133,7 @@
         </ul>
     </nav>
     <div class="flex flex-wrap md:flex-nowrap mb-12 justify-center">
-        <article class="mb-8">
+        <article class="p-2 mb-8">
             {{ $slot }}
         </article>
         <aside>

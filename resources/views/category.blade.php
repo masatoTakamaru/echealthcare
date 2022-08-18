@@ -3,13 +3,7 @@
     <h1>{{ $cat->name }}</h1>
     <p class="ml-4 text-sm">{{ $amount }}&nbsp;点の商品</p>
 </section>
-<nav class="ml-4">
-    <ul class="subcats">
-        @foreach($cat->subcats as $subcat)
-            <li><a href="{{ route('category', ['cat_id' => $cat->id, 'subcat_id' => $subcat->id]) }}">{{ $subcat->name }}</a></li>        
-        @endforeach
-    </ul>
-</nav>
+<x-subcat-index :cat="$cat" />
 <section>
     <div class="flex flex-wrap justify-evenly">
         @foreach($products as $product)

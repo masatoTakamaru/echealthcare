@@ -113,11 +113,7 @@
 }
 
 .subcats li {
-  border-bottom: lightgray 1px solid;
   padding: 10px 10px;
-}
-.subcats li:first-child {
-  border-top: lightgray 1px solid;
 }
 
 .font-alert {
