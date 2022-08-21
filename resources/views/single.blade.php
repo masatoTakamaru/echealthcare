@@ -5,13 +5,19 @@
         {{ $product->header }}
     </div>
     <div class="flex justify-center">
-        <img class="w-full md:w-96 p-4" src="{{ asset($main_photo->url) }}">
+        <img class="w-full md:w-96 p-4" src="{{ asset($mainphoto_url) }}">
     </div>
     <div class="flex justify-center flex-wrap items-center">
         @foreach($product->productphotos as $photo)
-            <a class="m-1 border" href="{{ route('single', ['id' => $product->id, 'another' => $photo->id]) }}">
-                <img class="w-14 p-1" src="{{ asset($photo->url) }}">
-            </a>
+            @if($photo->url == $product->primaryphoto_url)
+                <a class="m-1 border order-first" href="{{ route('user.single', ['id' => $product->id, 'another' => $photo->id]) }}">
+                    <img class="w-14 p-1" src="{{ asset($photo->url) }}">
+                </a>
+            @else
+                <a class="m-1 border" href="{{ route('user.single', ['id' => $product->id, 'another' => $photo->id]) }}">
+                    <img class="w-14 p-1" src="{{ asset($photo->url) }}">
+                </a>
+            @endif
         @endforeach
     </div>
     <div class="font-bold text-justify">
@@ -25,7 +31,7 @@
     </div>
     <div class="mb-4">
         @if($max_quantity)
-            <form action="{{ route('cart.store') }}" method="POST">
+            <form action="{{ route('user.cart.store') }}" method="POST">
                 @csrf
 
                 <input type="hidden" name="id" value="{{ $product->id }}">

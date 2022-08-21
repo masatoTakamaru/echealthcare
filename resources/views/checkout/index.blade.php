@@ -44,10 +44,10 @@
     </section>
     <section class="mt-8">
         <div class="text-center mb-8">
-            <a class="bg-primary py-2 px-10 rounded-lg shadow" href="{{ route('login') }}">ログイン</a>
+            <a class="bg-primary py-2 px-10 rounded-lg shadow" href="{{ route('user.login') }}">ログイン</a>
         </div>
         <div class="text-center mb-8">
-            <a class="py-2 px-8 border-2 rounded-lg shadow" href="{{ route('register') }}">新規登録</a>
+            <a class="py-2 px-8 border-2 rounded-lg shadow" href="{{ route('user.register') }}">新規登録</a>
         </div>
     </section>
 @endif

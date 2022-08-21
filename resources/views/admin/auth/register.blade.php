@@ -8,10 +8,10 @@
         <form method="POST" action="{{ route('admin.register') }}">
             @csrf
 
-            <!-- Name -->
+            <!-- Email -->
             <div>
-                <x-label for="name" value="管理者名" />
-                <x-input class="block mt-1 w-full border p-2" type="text" name="name" :value="old('name')" required autofocus />
+                <x-label for="email" value="メールアドレス" />
+                <x-input class="block mt-1 w-full border p-2" type="text" name="email" :value="old('email')" required autofocus />
             </div>
             <!-- Password -->
             <div class="mt-4">

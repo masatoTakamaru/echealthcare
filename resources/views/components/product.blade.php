@@ -3,10 +3,10 @@
         <div class="product-header text-brown">
             {{ $product->header }}
         </div>
-        <a href="{{ route('single', ['id' => $product->id]) }}">
+        <a href="{{ route('user.single', ['id' => $product->id]) }}">
             <div class="product-thumbnail-wrapper">
                 <img class="product-thumbnail"
-                    src="{{ asset($product->productphotos->first()->url) }}">
+                    src="{{ asset($product->primaryphoto_url) }}">
             </div>
             <div class="product-name">
                 {{ $product->name }}

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use App\Models\Productphoto;
 
-class CartController extends Controller
+class ProductphotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +16,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        if(Auth::id()) \Cart::session(Auth::id());
-        $items = \Cart::getContent();
-
-        return view('cart.index', [
-            'items' => $items,
-        ]);
+        //
     }
 
     /**
@@ -41,18 +37,22 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::find((int)$request->id);
-        $items = \Cart::getContent();
-        if(Auth::id()) \Cart::session(Auth::id());
-        \Cart::add([
-            'id' => uniqid(),
-            'name' => $product->name,
-            'price' => $product->price,
-            'quantity' => $request->quantity,
-            'associatedModel' => $product,
+        $file_name = $request->file('new-image')->getClientOriginalName();
+        $product = Productphoto::find($request->id)->product;
+        $product->productphotos()->create([
+            'url' => 'storage/productPhotos/' . sprintf('%1$09d', $product->id) . '/' . $file_name,
         ]);
 
-        return redirect()->route('user.cart.index');
+        $succeeded = $request->file('new-image')
+            ->storeAs('public/productPhotos/' . sprintf('%1$09d', $product->id), $file_name);
+
+        if($succeeded) {
+            session()->flash('flashmessage', '画像を追加しました。');
+        }
+
+        return redirect()->route('admin.product.edit', [
+            'product' => $product->id,
+        ]);
     }
 
     /**
@@ -63,6 +63,7 @@ class CartController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**
@@ -96,9 +97,15 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        if(Auth::id()) \Cart::session(Auth:id());
-        \Cart::remove($id);
+        $product = Productphoto::find($id)->product;
+        $succeeded = Productphoto::destroy($id);
 
-        return redirect()->route('user.cart.index');
+        if($succeeded) {
+            session()->flash('flashmessage', '画像を削除しました。');
+        }
+
+        return redirect()->route('admin.product.edit', [
+            'product' => $product->id,
+        ]);
     }
 }

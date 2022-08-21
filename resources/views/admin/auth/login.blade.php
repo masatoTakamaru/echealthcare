@@ -13,9 +13,9 @@
 
             <!-- admin Name -->
             <div>
-                <x-label for="name" :value="__('Adminname')" />
+                <x-label for="email" :value="__('Email')" />
 
-                <x-input id="name" class="block mt-1 p-2 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input id="email" class="block mt-1 p-2 w-full" type="text" name="email" :value="old('email')" required autofocus />
             </div>
 
             <!-- Password -->

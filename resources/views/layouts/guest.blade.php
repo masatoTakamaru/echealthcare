@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ asset('font-awesome-4.7.0/css/font-awesome.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}" />
-    <!-- tailwind
     <script src="https://cdn.tailwindcss.com"></script>
-    -->
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -18,7 +16,7 @@
         <a class="text-darkbrown" href="/">健康美容アイテム通販サイトサンプル</a>
         <div class="flex items-center">
             <div class="mr-4">
-                <a href="{{ route('cart.index') }}">
+                <a href="{{ route('user.cart.index') }}">
                     <i class="fa fa-shopping-cart text-xl text-darkbrown" aria-hidden="true"></i>
                     <span class="shoppingcart-counter text-darkbrown">{{ $cart_items->count() }}</span>
                 </a>
@@ -37,10 +35,10 @@
                     <ul class="flex">
                     @unless(Auth::id())
                         <li>
-                            <a class="mr-4" href="{{ route('login') }}">ログイン&nbsp;<i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                            <a class="mr-4" href="{{ route('user.login') }}">ログイン&nbsp;<i class="fa fa-sign-in" aria-hidden="true"></i></a>
                         </li>
                         <li>
-                            <a class="mr-4" href="{{ route('register') }}">会員登録</a>
+                            <a class="mr-4" href="{{ route('user.register') }}">会員登録</a>
                         </li>
                     @endunless
                     <li>
@@ -48,10 +46,10 @@
                     </li>
                     @if(Auth::id())
                         <li>
-                            <a class="mr-4" href="{{ route('user.edit', ['user' => Auth::user()->id]) }}">マイアカウント</a>
+                            <a class="mr-4" href="{{ route('user.user.edit', ['user' => Auth::user()->id]) }}">マイアカウント</a>
                         </li>
                         <li>
-                            <form action="{{ route('logout')}}" method="POST">
+                            <form action="{{ route('user.logout')}}" method="POST">
                                 @csrf
                                 <input type="submit" value="ログアウト">
                             </form>
@@ -73,10 +71,10 @@
     <ul>
     @unless(Auth::id())
         <li>
-            <a href="{{ route('login') }}">ログイン&nbsp;<i class="fa fa-sign-in" aria-hidden="true"></i></a>
+            <a href="{{ route('user.login') }}">ログイン&nbsp;<i class="fa fa-sign-in" aria-hidden="true"></i></a>
         </li>
         <li>
-            <a href="{{ route('register') }}">会員登録</a>
+            <a href="{{ route('user.register') }}">会員登録</a>
         </li>
     @endunless
     <li>
@@ -84,10 +82,10 @@
     </li>
     @if(Auth::id())
         <li>
-            <a href="{{ route('user.edit', ['user' => Auth::user()->id]) }}">マイアカウント</a>
+            <a href="{{ route('user.user.edit', ['user' => Auth::user()->id]) }}">マイアカウント</a>
         </li>
         <li>
-            <form action="{{ route('logout')}}" method="POST">
+            <form action="{{ route('admin.logout')}}" method="POST">
                 @csrf
                 <input type="submit" value="ログアウト">
             </form>
@@ -141,7 +139,7 @@
             <ul class="categories">
             @foreach($cats as $cat)
                 <li class="category-name ml-4">
-                    <a class="flex" href="{{ route('category', ['cat_id'=>$loop->iteration]) }}">
+                    <a class="flex" href="{{ route('user.category', ['cat_id'=>$loop->iteration]) }}">
                         {{ $cat->name }}
                         &nbsp;
                         <img class="category-icon w-6" src="{{ asset('images/category/categoryIcon0' . $loop->iteration . '.webp') }} ">

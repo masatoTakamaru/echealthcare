@@ -1,7 +1,7 @@
 <x-guest-layout>
 <section class="breadcrumbsWrapper ml-4 flex items-center">
     <div class="breadcrumbs">
-        <a href="{{ route('category', ['cat_id' => $subcat->cat->id]) }}">
+        <a href="{{ route('user.category', ['cat_id' => $subcat->cat->id]) }}">
             {{ $subcat->cat->name }}
         </a>
         &nbsp;

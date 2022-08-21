@@ -14,4 +14,10 @@ class Productphoto extends Model
         'url',
         'is_main',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
 }

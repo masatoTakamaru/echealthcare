@@ -12,16 +12,16 @@ class SingleController extends Controller
     {
         $product = Product::find($id);
         if($request->another) {
-            $main_photo = Productphoto::find($request->another);
+            $mainphoto_url = Productphoto::find($request->another)->url;
         } else {
-            $main_photo = $product->productphotos->first();
+            $mainphoto_url = $product->primaryphoto_url;
         }
         //在庫量が20以上なら在台購入数20まで
         $product->inventory >= 20 ? $max_quantity = 20 : $max_quantity = $product->inventory;
 
         return view('single', [
             'product' => $product,
-            'main_photo' => $main_photo,
+            'mainphoto_url' => $mainphoto_url,
             'max_quantity' => $max_quantity,
             'cat' => $product->subcat->cat,
         ]);

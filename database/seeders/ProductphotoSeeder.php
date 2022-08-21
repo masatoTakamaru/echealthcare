@@ -36,5 +36,12 @@ class ProductphotoSeeder extends Seeder
                 ]);
             }
         }
+        $products = Product::all();
+        foreach($products as $product) {
+            $productphoto = $product->productphotos()->first();
+            $product->update([
+                'primaryphoto_url' => $productphoto->url,
+            ]);
+        }
     }
 }

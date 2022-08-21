@@ -21,7 +21,7 @@
                     <li><span class="text-price">{{ number_format($item->getPriceSum()) }}&nbsp;円</span>(1個{{ number_format($item->price) }}円)</li>
                 @endif
                 <li>
-                    <form action="{{ route('cart.destroy', ['cart' => $item->id]) }}" method="POST">
+                    <form action="{{ route('user.cart.destroy', ['cart' => $item->id]) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <div class="mb-4">
@@ -45,7 +45,7 @@
         </tbody>
         </table>
         <div class="mt-8 my-4 text-center">
-            <a class="bg-primary py-2 px-10 rounded shadow" href="{{ route('checkout') }}">レジに進む</a>
+            <a class="bg-primary py-2 px-10 rounded shadow" href="{{ route('user.checkout') }}">レジに進む</a>
         </div>
     @endif
 </section>

@@ -3,7 +3,7 @@
     <div class="md:w-96">
         <h1 class="my-4">登録情報の編集</h1>
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-        <form action="{{ route('user.update', ['user' => $user->id]) }}" method="POST">
+        <form action="{{ route('user.user.update', ['user' => $user->id]) }}" method="POST">
             @method('PUT')
             @csrf
 

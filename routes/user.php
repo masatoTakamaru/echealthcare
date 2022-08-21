@@ -1,30 +1,42 @@
 <?php
 
-use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Admin\Auth\NewPasswordController;
-use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Admin\Auth\RegisteredUserController;
-use App\Http\Controllers\Admin\Auth\VerifyEmailController;
-use App\Http\Controllers\Admin\Auth\DashboardController;
-use App\Http\Controllers\Admin\Auth\UserIndexController;
-use App\Http\Controllers\Admin\Auth\RecommendController;
-use App\Http\Controllers\Admin\Auth\ProductController;
-use App\Http\Controllers\Admin\Auth\ProductphotoController;
+use App\Http\Controllers\User\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\User\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\User\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\User\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\User\Auth\NewPasswordController;
+use App\Http\Controllers\User\Auth\PasswordResetLinkController;
+use App\Http\Controllers\User\Auth\RegisteredUserController;
+use App\Http\Controllers\User\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth:admins')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])
-        ->name('dashboard');
-    Route::get('/user-index', [UserIndexController::class, 'index'])
-        ->name('user-index');
-    Route::resource('recommend', RecommendController::class);
-    Route::resource('product', ProductController::class);
-    Route::put('product/{product}/primaryphoto_update', [ProductController::class, 'primaryphoto_update'])
-        ->name('product.primaryphoto_update');
-    Route::resource('productphoto', ProductphotoController::class);
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
+
+Route::get('cateogry/{cat_id}/{subcat_id?}', 'App\Http\Controllers\CatController@index')->name('category');
+
+Route::get('{id}/single', 'App\Http\Controllers\SingleController@index')->name('single');
+
+Route::resource('/cart', 'App\Http\Controllers\CartController');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('checkout');
+    Route::post('/checkout', 'App\Http\Controllers\CheckoutController@succeed')
+        ->name('checkout.succeed');
+    Route::resource('user', 'App\Http\Controllers\UserController')
+        ->only(['edit', 'update', 'destroy']);
+    Route::get('user', 'App\Http\Controllers\UserController@updatesucceed')
+        ->name('updatesucceed');
 });
 
 Route::middleware('guest')->group(function () {
@@ -71,5 +83,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->middleware('auth:admins')
+    ->middleware('auth:users')
     ->name('logout');

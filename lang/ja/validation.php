@@ -133,4 +133,13 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+    'attributes' => [
+        'header' => 'ヘッダーメッセージ',
+        'name' => '名前',
+        'serial' => 'シリアル番号',
+        'price' => '価格',
+        'inventory' => '在庫数',
+        'spec' => '規格',
+        'maker' => '製造業者',
+    ],
 ];

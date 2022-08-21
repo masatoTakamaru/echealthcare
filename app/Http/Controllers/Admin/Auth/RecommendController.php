@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\Recommend;
 use App\Models\Product;
 
-class CartController extends Controller
+class RecommendController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +17,9 @@ class CartController extends Controller
      */
     public function index()
     {
-        if(Auth::id()) \Cart::session(Auth::id());
-        $items = \Cart::getContent();
+        $items = Recommend::all();
 
-        return view('cart.index', [
+        return view('admin.auth.recommend.index',[
             'items' => $items,
         ]);
     }
@@ -30,7 +31,8 @@ class CartController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        return view('admin.auth.recommend.create');
     }
 
     /**
@@ -41,18 +43,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::find((int)$request->id);
-        $items = \Cart::getContent();
-        if(Auth::id()) \Cart::session(Auth::id());
-        \Cart::add([
-            'id' => uniqid(),
-            'name' => $product->name,
-            'price' => $product->price,
-            'quantity' => $request->quantity,
-            'associatedModel' => $product,
-        ]);
-
-        return redirect()->route('user.cart.index');
+        //
     }
 
     /**
@@ -63,6 +54,7 @@ class CartController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**
@@ -96,9 +88,6 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        if(Auth::id()) \Cart::session(Auth:id());
-        \Cart::remove($id);
-
-        return redirect()->route('user.cart.index');
+        //
     }
 }
