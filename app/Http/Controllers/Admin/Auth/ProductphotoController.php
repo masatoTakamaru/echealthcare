@@ -37,8 +37,12 @@ class ProductphotoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'new-image' => ['required', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+        ]);
+
         $file_name = $request->file('new-image')->getClientOriginalName();
-        $product = Productphoto::find($request->id)->product;
+        $product = Product::find($request->id);
         $product->productphotos()->create([
             'url' => 'storage/productPhotos/' . sprintf('%1$09d', $product->id) . '/' . $file_name,
         ]);

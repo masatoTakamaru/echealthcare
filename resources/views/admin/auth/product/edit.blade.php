@@ -53,7 +53,7 @@
     <div class="flex flex-wrap">
         @foreach($item->productphotos as $image)
             <div class="px-4">
-                <div class="h-32">
+                <div>
                     @if($image->url == $item->primaryphoto_url)
                         <img class="w-32 ring-4" src="/{{ $image->url }}">
                     @else
