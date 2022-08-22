@@ -95,9 +95,13 @@
 </nav>
 <!-- main -->
 <main>
-    <div class="topImage h-60 md:h-96">
-        <div class="topLogo pt-8 md:pt-36">
-            <a class="logo" href="/">Healthcare</a>
+    <!--top-->
+    <div class="flex justify-center items-center p-2">
+        <img class="p-2" src="{{ asset('top-logo.webp') }}">
+        <div>
+            <div class="border rounded shadow p-2" >
+                <img src="{{ asset('free-ship-logo.webp') }}">
+            </div>
         </div>
     </div>
     <nav class="headerUtilNav">
