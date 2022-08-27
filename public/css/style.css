@@ -1,33 +1,38 @@
-.text-pink {
+@charset "UTF-8";
+.font-pink {
   color: rgb(252, 236, 238);
 }
 
-.text-yellow {
+.font-brightpink {
+  color: #f65d75;
+}
+
+.font-yellow {
   color: rgb(250, 248, 215);
 }
 
-.text-blue {
-  color: rgb(209, 234, 234);
+.font-blue {
+  color: #00c8f5;
 }
 
-.text-red {
+.font-red {
   color: rgb(229, 125, 117);
 }
 
-.text-brown {
+.font-brown {
   color: rgb(229, 125, 117);
 }
 
-.text-darkbrown {
+.font-darkbrown {
   color: rgb(139, 109, 37);
 }
 
-.text-price {
+.font-price {
   color: #b12704;
   font-weight: 700;
 }
 
-.text-primary {
+.font-primary {
   color: #ff9900;
 }
 
@@ -40,7 +45,7 @@
 }
 
 .bg-blue {
-  background-color: rgb(209, 234, 234);
+  background-color: #00c8f5;
 }
 
 .bg-red {
@@ -53,6 +58,10 @@
 
 .bg-primary {
   background-color: #ff9900;
+}
+
+body {
+  font-family: "Avenir", "Helvetica Neue", "Helvetica", "Arial", "Hiragino Sans", "ヒラギノ角ゴシック", YuGothic, "Yu Gothic", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
 
 .shoppingcart-counter {
@@ -74,16 +83,38 @@
   border-top: lightgray 1px solid;
 }
 
-.headerUtilNav {
-  margin: 10px 10px;
-  line-height: 10px;
+.top-logo {
+  height: 110px;
 }
-.headerUtilNav li {
-  border-left: lightgray 1px solid;
-  padding: 10px 10px;
+.top-logo span {
+  font-size: 9px;
 }
-.headerUtilNav li:first-child {
+
+.under-top-nav ul {
+  display: table;
+  margin: 8px auto;
+  padding: 4px 0;
+  background-color: rgb(255, 170, 130);
+}
+.under-top-nav ul li {
+  display: table-cell;
+  width: 150px;
+  padding: 4px 0;
+  font-size: 14px;
+  text-align: center;
+  box-sizing: border-box;
+  margin-left: 2px;
+  border-left: white 1px solid;
+}
+.under-top-nav ul li:first-child {
   border: none;
+}
+.under-top-nav ul li:hover {
+  color: white;
+}
+
+.campaign img {
+  width: 48%;
 }
 
 .categories li {
@@ -110,13 +141,46 @@ article {
   width: 100%;
 }
 
+.slick-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.slick-arrow {
+  width: 30px;
+  border: lightgray 1px solid;
+  border-radius: 4px;
+}
+
+.slick-list {
+  margin: 0 4px;
+}
+
+.slick-slide {
+  padding: 0 4px;
+}
+
+.subcats li {
+  font-size: 14px;
+  line-height: 0rem;
+}
+
 @media screen and (min-width: 768px) {
   aside {
-    order: 1;
-    width: 280px;
+    width: 256px;
   }
   article {
-    order: 2;
     max-width: 900px;
+  }
+  .slick-slider {
+    width: 700px;
+  }
+  .under-top-nav li {
+    border-left: white 2px solid;
+    text-align: center;
+  }
+  .campaign img {
+    width: auto;
   }
 }/*# sourceMappingURL=style.css.map */

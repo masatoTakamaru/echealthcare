@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="icon" href="{{ asset('favicon.ico') }}" id="favicon">
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('font-awesome-4.7.0/css/font-awesome.min.css') }}" />
         <script src="https://cdn.tailwindcss.com"></script>
@@ -18,7 +19,7 @@
             @endif
             <!-- エラーメッセージの表示 -->
             @if ($errors->any())
-                <div class="text-red-400 p-4">
+                <div class="font-red-400 p-4">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>

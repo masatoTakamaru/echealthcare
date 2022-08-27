@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Productphoto;
 use App\Models\Recommend;
+use App\Models\Cat;
 
 class IndexController extends Controller
 {
@@ -20,10 +21,12 @@ class IndexController extends Controller
         foreach($recommend_ids as $id) {
             $recommends->push($id->product);
         }
+        $cats = Cat::all();
 
         return view('index', [
             'new_items' => $new_items,
             'recommends' => $recommends,
+            'cats' => $cats,
         ]);
     }
 }
