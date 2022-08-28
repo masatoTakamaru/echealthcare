@@ -1,7 +1,7 @@
 <x-app-layout>
 <section class="py-2 flex items-center">
     <div class="mr-4">
-        <form action="{{ route('admin.product.index') }}" method="GET">
+        <form action="{{ route('admin.item.index') }}" method="GET">
             <input class="rounded" type="text" name="keyword" value="{{ $keyword }}">
             <span class="border p-1 bg-gray-300 rounded">
                 <button type="submit">検索&nbsp;<i class="fa fa-search" aria-hidden="true"></i></button>
@@ -9,7 +9,7 @@
         </form>
     </div>
     <div>
-        <form action="{{ route('admin.product.index') }}" method="GET">
+        <form action="{{ route('admin.item.index') }}" method="GET">
             <select class="p-2 rounded" name="cat_id">
                 <option value="">カテゴリー</option>
                 @foreach($cats as $cat)
@@ -26,7 +26,7 @@
         </form>
     </div>
     <div class="ml-8">
-        <a class="py-2 px-4 bg-blue-200 rounded" href="{{ route('admin.product.create') }}">商品の新規登録</a>
+        <a class="py-2 px-4 bg-blue-200 rounded" href="{{ route('admin.item.create') }}">商品の新規登録</a>
     </div>
 </section>
 <section>
@@ -53,7 +53,7 @@
 @foreach($items as $item)
     <tr class="even:bg-gray-200">
         <td class="px-2 text-right">{{ $item->id }}</td>
-        <td><a class="font-blue-600" href="{{ route('admin.product.edit', ['product' => $item->id]) }}">{{ $item->name }}</td>
+        <td><a class="font-blue-600" href="{{ route('admin.item.edit', ['item' => $item->id]) }}">{{ $item->name }}</td>
         <td>{{ $item->serial }}</td>
         <td class="text-right px-2">{{ number_format($item->price) }}</td>
         <td class="text-right px-2">{{ $item->inventory }}</td>

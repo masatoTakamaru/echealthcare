@@ -1,7 +1,7 @@
 <x-app-layout>
 <h1>商品の編集</h1>
 <section>
-    <form action="{{ route('admin.product.edit', ['product' => $item->id]) }}" method="GET">
+    <form action="{{ route('admin.item.edit', ['item' => $item->id]) }}" method="GET">
         @csrf
 
         <label class="mt-2 block" for="name">カテゴリー</label>
@@ -16,7 +16,7 @@
         </select>
         <input class="py-1 px-4 bg-white border rounded" type="submit" value="選択">
     </form>
-    <form action="{{ route('admin.product.update', ['product' => $item->id]) }}" method="POST">
+    <form action="{{ route('admin.item.update', ['item' => $item->id]) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -51,13 +51,13 @@
     <img class="w-48" src="{{ asset($item->primaryphoto_url) }}">
     <h1 class="my-4">画像ファイル（最大 5 枚）：<span class="text-gray-600">画像をクリックするとメイン画像を変更できます。</span></h1>
     <div class="flex flex-wrap">
-        @foreach($item->productphotos as $image)
+        @foreach($item->itemphotos as $image)
             <div class="px-4">
                 <div>
                     @if($image->url == $item->primaryphoto_url)
                         <img class="w-32 ring-4" src="/{{ $image->url }}">
                     @else
-                        <form action="{{ route('admin.product.primaryphoto_update', ['product' => $image->id]) }}" method="POST">
+                        <form action="{{ route('admin.item.primaryphoto_update', ['item' => $image->id]) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <button type="submit">
@@ -66,19 +66,19 @@
                         </form>
                     @endif
                 </div>
-                <form action="{{ route('admin.productphoto.destroy', ['productphoto' => $image->id]) }}" method="POST">
+                <form action="{{ route('admin.itemphoto.destroy', ['itemphoto' => $image->id]) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <div class="text-center">
-                        <input class="product-photo-delete mt-2 py-1 px-6 bg-white border rounded" type="submit" value="削除">
+                        <input class="item-photo-delete mt-2 py-1 px-6 bg-white border rounded" type="submit" value="削除">
                     </div>
                 </form>
             </div>
         @endforeach
     </div>
-    @if($item->productphotos->count() < 5)
+    @if($item->itemphotos->count() < 5)
         <p class="text-sm py-2">新規画像ファイルの追加</p>
-        <form action="{{ route('admin.productphoto.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.itemphoto.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input id="new-image" type="file" name="new-image">
             <input type="hidden" name="id" value="{{ $item->id }}">
@@ -90,7 +90,7 @@
 
 <script>
     //削除の確認
-    $(".product-photo-delete").on('click', () => {
+    $(".item-photo-delete").on('click', () => {
         if(!confirm("削除してもよろしいですか？")) return false;
     });
 </script>

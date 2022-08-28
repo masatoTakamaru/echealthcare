@@ -23,7 +23,7 @@ class CheckoutController extends Controller
                     ->getContent();
         foreach($items as $item) {
             $user->purchases()->create([
-                'product_id' => $item->associatedModel->id,
+                'item_id' => $item->associatedModel->id,
                 'quantity' => $item->quantity,
                 'price' => $item->price,
                 'pricesum' => $item->getPriceSum(),

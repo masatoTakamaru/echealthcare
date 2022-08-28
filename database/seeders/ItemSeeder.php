@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ProductSeeder extends Seeder
+class ItemSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -106,9 +106,9 @@ class ProductSeeder extends Seeder
         foreach($catsubs as $index => $names) {
             $cat_num = $index + 1;
             foreach($names as $index => $name) {
-                $product_number = rand(5, 200);
-                for($i = 0; $i <= $product_number; $i++) {
-                    DB::table('products')->insert([
+                $item_number = rand(5, 200);
+                for($i = 0; $i <= $item_number; $i++) {
+                    DB::table('items')->insert([
                         'header' => '今なら' . rand(1,8) . '0%OFF!!',
                         'name' => '製品' . $count . fake()->text(100),
                         'serial' => sprintf('%1$09d', $count),

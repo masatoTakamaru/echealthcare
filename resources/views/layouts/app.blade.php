@@ -19,7 +19,7 @@
             @endif
             <!-- エラーメッセージの表示 -->
             @if ($errors->any())
-                <div class="font-red-400 p-4">
+                <div class="text-red-400 p-4">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>

@@ -9,8 +9,8 @@ class Recommend extends Model
 {
     use HasFactory;
 
-    public function product()
+    public function item()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Item::class);
     }
 }

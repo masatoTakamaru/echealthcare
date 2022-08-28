@@ -11,7 +11,7 @@
                     <x-nav-link :href="route('admin.user-index')" :active="request()->routeIs('admin.user-index')">
                             ユーザー
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.product.index')" :active="request()->routeIs('admin.product.*')">
+                    <x-nav-link :href="route('admin.item.index')" :active="request()->routeIs('admin.item.*')">
                             商品
                     </x-nav-link>
                     <x-nav-link :href="route('admin.recommend.index')" :active="request()->routeIs('admin.recommend.*')">

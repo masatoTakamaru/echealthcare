@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('productphotos', function (Blueprint $table) {
+        Schema::create('itemphotos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('product_id')->comment('製品ID');
+            $table->bigInteger('item_id')->comment('製品ID');
             $table->string('url')->comment('画像のURL');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productphotos');
+        Schema::dropIfExists('itemphotos');
     }
 };

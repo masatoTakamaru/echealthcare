@@ -141,6 +141,6 @@ return [
         'inventory' => '在庫数',
         'spec' => '規格',
         'maker' => '製造業者',
-        'new-image' => 'ファイル',
+        'image1' => 'メイン画像',
     ],
 ];

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('recommends', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('product_id');
+            $table->bigInteger('item_id');
             $table->timestamps();
         });
     }

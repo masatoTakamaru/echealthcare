@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Recommend;
-use App\Models\Product;
+use App\Models\Item;
 
 class RecommendController extends Controller
 {
@@ -31,7 +31,7 @@ class RecommendController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        $items = Item::all();
         return view('admin.auth.recommend.create');
     }
 

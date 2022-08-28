@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Productphoto;
+use App\Models\Item;
+use App\Models\Itemphoto;
 
-class ProductphotoController extends Controller
+class ItemphotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,20 +42,20 @@ class ProductphotoController extends Controller
         ]);
 
         $file_name = $request->file('new-image')->getClientOriginalName();
-        $product = Product::find($request->id);
-        $product->productphotos()->create([
-            'url' => 'storage/productPhotos/' . sprintf('%1$09d', $product->id) . '/' . $file_name,
+        $item = Item::find($request->id);
+        $item->itemphotos()->create([
+            'url' => 'storage/itemPhotos/' . sprintf('%1$09d', $item->id) . '/' . $file_name,
         ]);
 
-        $succeeded = $request->file('new-image')
-            ->storeAs('public/productPhotos/' . sprintf('%1$09d', $product->id), $file_name);
+        $item_photo = $request->file('new-image')
+            ->storeAs('public/itemPhotos/' . sprintf('%1$09d', $item->id), $file_name);
 
-        if($succeeded) {
+        if($item_photo) {
             session()->flash('flashmessage', '画像を追加しました。');
         }
 
-        return redirect()->route('admin.product.edit', [
-            'product' => $product->id,
+        return redirect()->route('admin.item.edit', [
+            'item' => $item->id,
         ]);
     }
 
@@ -101,15 +101,15 @@ class ProductphotoController extends Controller
      */
     public function destroy($id)
     {
-        $product = Productphoto::find($id)->product;
-        $succeeded = Productphoto::destroy($id);
+        $item = Itemphoto::find($id)->item;
+        $succeeded = Itemphoto::destroy($id);
 
         if($succeeded) {
             session()->flash('flashmessage', '画像を削除しました。');
         }
 
-        return redirect()->route('admin.product.edit', [
-            'product' => $product->id,
+        return redirect()->route('admin.item.edit', [
+            'item' => $item->id,
         ]);
     }
 }

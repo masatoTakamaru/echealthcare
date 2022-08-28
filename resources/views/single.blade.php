@@ -2,39 +2,39 @@
 <section class="p-4">
     <x-subcat-index :cat="$cat" />
     <div class="font-brown font-bold ml-4">
-        {{ $product->header }}
+        {{ $item->header }}
     </div>
     <div class="flex justify-center">
         <img class="w-full md:w-96 p-4" src="{{ asset($mainphoto_url) }}">
     </div>
     <div class="flex justify-center flex-wrap items-center">
-        @foreach($product->productphotos as $photo)
-            @if($photo->url == $product->primaryphoto_url)
-                <a class="m-1 border" href="{{ route('user.single', ['id' => $product->id, 'another' => $photo->id]) }}">
+        @foreach($item->itemphotos as $photo)
+            @if($photo->url == $item->primaryphoto_url)
+                <a class="m-1 border" href="{{ route('user.single', ['id' => $item->id, 'another' => $photo->id]) }}">
                     <img class="w-14 p-1" src="{{ asset($photo->url) }}">
                 </a>
             @else
-                <a class="m-1 border" href="{{ route('user.single', ['id' => $product->id, 'another' => $photo->id]) }}">
+                <a class="m-1 border" href="{{ route('user.single', ['id' => $item->id, 'another' => $photo->id]) }}">
                     <img class="w-14 p-1" src="{{ asset($photo->url) }}">
                 </a>
             @endif
         @endforeach
     </div>
     <div class="font-bold text-justify">
-        {{ $product->name }}
+        {{ $item->name }}
     </div>
     <div class="py-2">
-        {{ $product->maker }}
+        {{ $item->maker }}
     </div>
     <div class="font-price text-lg mb-4">
-        {{ number_format($product->price) }}円
+        {{ number_format($item->price) }}円
     </div>
     <div class="mb-4">
         @if($max_quantity)
             <form action="{{ route('user.cart.store') }}" method="POST">
                 @csrf
 
-                <input type="hidden" name="id" value="{{ $product->id }}">
+                <input type="hidden" name="id" value="{{ $item->id }}">
                 <label for="quantity">数量&nbsp;:&nbsp;</label>
                 <select class="border-2 p-2 w-20" id="quantity" name="quantity">
                     @for($i = 1; $i <= $max_quantity; $i++)
@@ -50,10 +50,10 @@
         @endif
     </div>
     <div class="singleSerial">
-        シリアル番号&nbsp;:&nbsp;[{{ $product->serial }}]
+        シリアル番号&nbsp;:&nbsp;[{{ $item->serial }}]
     </div>
     <div class="singleSpec text-justify">
-        {{ $product->spec }}
+        {{ $item->spec }}
     </div>
     <nav class="my-10">
         <ul class="flex justify-center items-center">

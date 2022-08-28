@@ -13,25 +13,25 @@ class CatController extends Controller
         $cat = Cat::find($cat_id);
         if ($subcat_id) {
             $subcat = $cat->subcats->find($subcat_id);
-            $products = $subcat->products()
+            $items = $subcat->items()
                 ->orderBy('id', 'desc');
-            $amount = $products->count();
+            $amount = $items->count();
             
             return view('subcat', [
                 'cat' => $subcat->cat,
                 'subcat' => $subcat,
                 'amount' => $amount,
-                'products' => $products->paginate(12)->onEachSide(0),
+                'items' => $items->paginate(12)->onEachSide(0),
             ]);
         } else {
-            $products = $cat->products()
+            $items = $cat->items()
             ->orderBy('id', 'desc');
-            $amount = $products->count();
+            $amount = $items->count();
 
             return view('category', [
                 'cat' => $cat,
                 'amount' => $amount,
-                'products' => $products->paginate(12)->onEachSide(0),
+                'items' => $items->paginate(12)->onEachSide(0),
             ]);    
 
         }

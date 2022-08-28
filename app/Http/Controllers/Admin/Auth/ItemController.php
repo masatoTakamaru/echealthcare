@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\Auth\ProductRequest;
+use App\Http\Requests\Admin\Auth\ItemRequest;
 use Illuminate\Support\Facades\DB;
-use App\Models\Product;
-use App\Models\Productphoto;
+use App\Models\Item;
+use App\Models\Itemphoto;
 use App\Models\Cat;
 
-class ProductController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,15 +22,15 @@ class ProductController extends Controller
         $keyword = $request->keyword;
         $cat_id = (int)$request->cat_id;
         if($keyword) {
-            $items = Product::where('name', 'LIKE', "%$keyword%")->orderBy('id', 'desc');
+            $items = Item::where('name', 'LIKE', "%$keyword%")->orderBy('id', 'desc');
         } elseif($cat_id) {
-            $items = Product::where('cat_id', $cat_id)->orderBy('id', 'desc');
+            $items = Item::where('cat_id', $cat_id)->orderBy('id', 'desc');
         } else {
-            $items = Product::orderBy('id', 'desc');
+            $items = Item::orderBy('id', 'desc');
         }
         $cats = Cat::all();
 
-        return view('admin.auth.product.index', [
+        return view('admin.auth.item.index', [
             'keyword' => $keyword,
             'items' => $items->paginate(25)->onEachSide(0),
             'cats' => $cats,
@@ -48,7 +48,7 @@ class ProductController extends Controller
         $cats = Cat::all();
         $request->cat_id ? $current_cat_id = $request->cat_id : $current_cat_id = $cats->first()->id;
 
-        return view('admin.auth.product.create', [
+        return view('admin.auth.item.create', [
             'cats' => $cats,
             'current_cat_id' => $current_cat_id,
         ]);
@@ -60,7 +60,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(ItemRequest $request)
     {
         $input = $request->only([
             'header',
@@ -72,15 +72,50 @@ class ProductController extends Controller
             'cat_id',
             'subcat_id',
             'maker',
+            'image1',
+            'image2',
+            'image3',
+            'image4',
+            'image5',
         ]);
 
-        $succeeded = Product::create($input);
+        $request->validate([
+            'image1' => ['required', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+            'image2' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+            'image3' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+            'image4' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+            'image5' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+        ]);
 
-        if($succeeded) {
+        dd($request->image1);
+
+        try {
+            DB::beginTransaction();
+
+            $item = Item::find($request->id);
+
+            for( $i = 1; $i <= 5; $i++) {
+                $file_name = $request->file('image' . $i)->getClientOriginalName();
+                $item->itemphotos()->create([
+                    'url' => 'storage/itemPhotos/' . sprintf('%1$09d', $item->id) . '/' . $file_name,
+                ]);
+                $item_photo = $request->file('image' . $i)
+                    ->storeAs('public/itemPhotos/' . sprintf('%1$09d', $item->id), $file_name);    
+            }
+
+        } catch (\Throwable $e) {
+            \DB::rollback();
+            \Log::error($e);
+            throw $e;
+        }
+
+        $item = Item::create($input);
+
+        if($item) {
             session()->flash('flashmessage', '商品を登録しました。');
         }
 
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.item.index');
     }
 
     /**
@@ -104,9 +139,9 @@ class ProductController extends Controller
     {
         $cats = Cat::all();
         $request->cat_id ? $current_cat_id = $request->cat_id : $current_cat_id = $cats->first()->id;
-        $item = Product::find($id);
+        $item = Item::find($id);
 
-        return view('admin.auth.product.edit', [
+        return view('admin.auth.item.edit', [
             'cats' => $cats,
             'current_cat_id' => $current_cat_id,
             'item' => $item,
@@ -121,7 +156,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(ItemRequest $request, $id)
     {
         $input = $request->only([
             'header',
@@ -140,7 +175,7 @@ class ProductController extends Controller
             'image5',
         ]);
 
-        $succeeded = Product::find($id)->update([
+        $item = Item::find($id)->update([
             'header' => $request->header,
             'name' => $request->name,
             'serial' => $request->serial,
@@ -152,27 +187,27 @@ class ProductController extends Controller
             'maker' => $request->maker,
         ]);
 
-        if($succeeded) {
+        if($item) {
             session()->flash('flashmessage', '商品を更新しました。');
         }
 
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.item.index');
     }
 
 
     public function primaryphoto_update($id)
     {
-        $productphoto = Productphoto::find($id);
-        $product = $productphoto->product;
-        $product->primaryphoto_url = $productphoto->url;
-        $succeeded = $product->save();
+        $itemphoto = Itemphoto::find($id);
+        $item = $itemphoto->item;
+        $item->primaryphoto_url = $itemphoto->url;
+        $succeeded = $item->save();
  
         if($succeeded) {
             session()->flash('flashmessage', 'メイン画像を変更しました。');
         }
 
-        return redirect()->route('admin.product.edit', [
-            'product' => $product->id,
+        return redirect()->route('admin.item.edit', [
+            'item' => $item->id,
         ]);
     }
 

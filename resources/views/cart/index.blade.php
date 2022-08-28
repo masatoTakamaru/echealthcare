@@ -10,7 +10,7 @@
         <tbody>
         @foreach($items as $item)
             <tr>
-            <td class="w-1/4 pr-4"><img src="{{ $item->associatedModel->productphotos->first()->url }}"></td>
+            <td class="w-1/4 pr-4"><img src="{{ $item->associatedModel->itemphotos->first()->url }}"></td>
             <td>
                 <ul>
                 <li>{{ $item->name }}</li>

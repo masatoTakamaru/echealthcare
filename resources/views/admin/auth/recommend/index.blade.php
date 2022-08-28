@@ -17,14 +17,14 @@
 <tbody>
 @foreach($items as $item)
     <tr class="even:bg-gray-200">
-        <td class="px-2 text-right">{{ $item->product->id }}</td>
-        <td>{{ $item->product->name }}</td>
-        <td>{{ $item->product->serial }}</td>
-        <td class="text-right px-2">{{ number_format($item->product->price) }}</td>
-        <td class="text-right px-2">{{ $item->product->inventory }}</td>
-        <td>{{ $item->product->subcat->cat->name }}</td>
-        <td>{{ $item->product->subcat->name }}</td>
-        <td>{{ $item->product->maker }}</td>
+        <td class="px-2 text-right">{{ $item->item->id }}</td>
+        <td>{{ $item->item->name }}</td>
+        <td>{{ $item->item->serial }}</td>
+        <td class="text-right px-2">{{ number_format($item->item->price) }}</td>
+        <td class="text-right px-2">{{ $item->item->inventory }}</td>
+        <td>{{ $item->item->subcat->cat->name }}</td>
+        <td>{{ $item->item->subcat->name }}</td>
+        <td>{{ $item->item->maker }}</td>
         <td>{{ $item->created_at }}</td>
     </tr>
 @endforeach

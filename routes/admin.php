@@ -11,8 +11,8 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\Auth\DashboardController;
 use App\Http\Controllers\Admin\Auth\UserIndexController;
 use App\Http\Controllers\Admin\Auth\RecommendController;
-use App\Http\Controllers\Admin\Auth\ProductController;
-use App\Http\Controllers\Admin\Auth\ProductphotoController;
+use App\Http\Controllers\Admin\Auth\ItemController;
+use App\Http\Controllers\Admin\Auth\ItemphotoController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:admins')->group(function () {
@@ -21,10 +21,10 @@ Route::middleware('auth:admins')->group(function () {
     Route::get('/user-index', [UserIndexController::class, 'index'])
         ->name('user-index');
     Route::resource('recommend', RecommendController::class);
-    Route::resource('product', ProductController::class);
-    Route::put('product/{product}/primaryphoto_update', [ProductController::class, 'primaryphoto_update'])
-        ->name('product.primaryphoto_update');
-    Route::resource('productphoto', ProductphotoController::class);
+    Route::resource('item', ItemController::class);
+    Route::put('item/{item}/primaryphoto_update', [ItemController::class, 'primaryphoto_update'])
+        ->name('item.primaryphoto_update');
+    Route::resource('itemphoto', ItemphotoController::class);
 });
 
 Route::middleware('guest')->group(function () {

@@ -18,8 +18,8 @@ class Cat extends Model
         return $this->hasMany(Subcat::class);
     }
 
-    public function products()
+    public function items()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Item::class);
     }
 }

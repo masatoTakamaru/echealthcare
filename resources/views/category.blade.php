@@ -6,14 +6,14 @@
 <x-subcat-index :cat="$cat" />
 <section>
     <div class="flex flex-wrap justify-evenly">
-        @foreach($products as $product)
-            <x-product :product="$product" />
+        @foreach($items as $item)
+            <x-item :item="$item" />
         @endforeach
     </div>
 </section>
 <section class="paginationContainer">
     <div class="paginationWrapper">
-        {{ $products->links('vendor.pagination.default') }}
+        {{ $items->links('vendor.pagination.default') }}
     </div>
 </section>
 </x-guest-layout>

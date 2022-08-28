@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Product;
+use App\Models\Item;
 
 class CartController extends Controller
 {
@@ -41,15 +41,15 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::find((int)$request->id);
+        $item = Item::find((int)$request->id);
         $items = \Cart::getContent();
         if(Auth::id()) \Cart::session(Auth::id());
         \Cart::add([
             'id' => uniqid(),
-            'name' => $product->name,
-            'price' => $product->price,
+            'name' => $item->name,
+            'price' => $item->price,
             'quantity' => $request->quantity,
-            'associatedModel' => $product,
+            'associatedModel' => $item,
         ]);
 
         return redirect()->route('user.cart.index');

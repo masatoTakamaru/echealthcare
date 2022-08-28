@@ -10,10 +10,10 @@
 <section>
     <h1 class="mt-6 font-bold border-b"><span class="text-xl font-primary">New Items</span> － 新着商品 －</h1>
     <div class="new-items mt-4">
-        @foreach($new_items as $product)
-            <a class="w-36" href="{{ route('user.single', ['id' => $product->id]) }}">
-                <img src="{{ asset($product->primaryphoto_url) }}">
-                <p>{{ $product->name }}</p>
+        @foreach($new_items as $item)
+            <a class="w-36" href="{{ route('user.single', ['id' => $item->id]) }}">
+                <img src="{{ asset($item->primaryphoto_url) }}">
+                <p>{{ $item->name }}</p>
             </a>
         @endforeach
     </div>
@@ -22,10 +22,10 @@
 <section>
     <h1 class="mt-6 font-bold border-b"><span class="text-xl font-primary">Recommends</span> － おすすめ商品 －</h1>
     <div class="recommends mt-4">
-        @foreach($recommends as $product)
-            <a class="w-36" href="{{ route('user.single', ['id' => $product->id]) }}">
-                <img src="{{ asset($product->primaryphoto_url) }}">
-                <p>{{ $product->name }}</p>
+        @foreach($recommends as $item)
+            <a class="w-36" href="{{ route('user.single', ['id' => $item->id]) }}">
+                <img src="{{ asset($item->primaryphoto_url) }}">
+                <p>{{ $item->name }}</p>
             </a>
         @endforeach
     </div>

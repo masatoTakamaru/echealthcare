@@ -10,7 +10,7 @@ class Subcat extends Model
     use HasFactory;
 
     protected $fillable = [
-        'product_id',
+        'item_id',
         'name',
     ];
 
@@ -19,8 +19,8 @@ class Subcat extends Model
         return $this->belongsTo(Cat::class);
     }
 
-    public function products()
+    public function items()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Item::class);
     }
 }

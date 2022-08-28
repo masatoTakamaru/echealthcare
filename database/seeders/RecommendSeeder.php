@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Product;
+use App\Models\Item;
 
 class RecommendSeeder extends Seeder
 {
@@ -16,11 +16,11 @@ class RecommendSeeder extends Seeder
      */
     public function run()
     {
-        $amount = Product::all()->count();
+        $amount = Item::all()->count();
         for($i = 1; $i <= 10; $i++)
         {
             DB::table('recommends')->insert([
-                'product_id' => rand(1, $amount),
+                'item_id' => rand(1, $amount),
             ]);
         }
     }

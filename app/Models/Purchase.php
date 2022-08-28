@@ -10,14 +10,14 @@ class Purchase extends Model
     use HasFactory;
     
     protected $fillable = [
-        'product_id',
+        'item_id',
         'quantity',
         'price',
         'pricesum',
     ];
 
-    public function product()
+    public function item()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Item::class);
     }
 }

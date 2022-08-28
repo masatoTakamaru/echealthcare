@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Product;
-use App\Models\Productphoto;
+use App\Models\Item;
+use App\Models\Itemphoto;
 use App\Models\Recommend;
 use App\Models\Cat;
 
@@ -13,13 +13,13 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $new_items = Product::orderBy('id', 'desc')
+        $new_items = Item::orderBy('id', 'desc')
             ->take(6)
             ->get();
         $recommend_ids = Recommend::all();
         $recommends = collect([]);
         foreach($recommend_ids as $id) {
-            $recommends->push($id->product);
+            $recommends->push($id->item);
         }
         $cats = Cat::all();
 

@@ -21,7 +21,7 @@
 @foreach($items as $item)
     <tr class="border even:bg-gray-200">
         <td>{{ $item->created_at }}</td>
-        <td>{{ $item->product->name }}</td>
+        <td>{{ $item->item->name }}</td>
         <td>{{ $item->quantity }}</td>
         <td>{{ number_format($item->price) }}</td>
         <td>{{ number_format($item->pricesum) }}</td>

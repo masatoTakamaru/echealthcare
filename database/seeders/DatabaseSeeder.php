@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CatSeeder::class,
             SubcatSeeder::class,
-            ProductSeeder::class,
-            ProductphotoSeeder::class,
+            ItemSeeder::class,
+            ItemphotoSeeder::class,
             RecommendSeeder::class,
             AdminSeeder::class,
         ]);
