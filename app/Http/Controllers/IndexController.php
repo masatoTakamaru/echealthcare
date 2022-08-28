@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Item;
-use App\Models\Itemphoto;
+use App\Models\Itemimage;
 use App\Models\Recommend;
 use App\Models\Cat;
 

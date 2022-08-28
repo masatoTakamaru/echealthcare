@@ -12,7 +12,7 @@
     <div class="new-items mt-4">
         @foreach($new_items as $item)
             <a class="w-36" href="{{ route('user.single', ['id' => $item->id]) }}">
-                <img src="{{ asset($item->primaryphoto_url) }}">
+                <img src="{{ asset($item->primaryimage_url) }}">
                 <p>{{ $item->name }}</p>
             </a>
         @endforeach
@@ -24,7 +24,7 @@
     <div class="recommends mt-4">
         @foreach($recommends as $item)
             <a class="w-36" href="{{ route('user.single', ['id' => $item->id]) }}">
-                <img src="{{ asset($item->primaryphoto_url) }}">
+                <img src="{{ asset($item->primaryimage_url) }}">
                 <p>{{ $item->name }}</p>
             </a>
         @endforeach

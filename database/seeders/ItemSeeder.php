@@ -106,7 +106,7 @@ class ItemSeeder extends Seeder
         foreach($catsubs as $index => $names) {
             $cat_num = $index + 1;
             foreach($names as $index => $name) {
-                $item_number = rand(5, 200);
+                $item_number = rand(5, 50);
                 for($i = 0; $i <= $item_number; $i++) {
                     DB::table('items')->insert([
                         'header' => '今なら' . rand(1,8) . '0%OFF!!',

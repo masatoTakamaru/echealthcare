@@ -43,55 +43,55 @@
         <label class="mt-2 block" for="maker">製造業者</label>
         <input type="text" name="maker" size="40" value="{{ old('maker') ?? $item->maker }}">
 
+        <label class="mt-2 block">画像ファイル（最大５枚）</label>
+        <table class="bg-white">
+        <tbody>
+            @for($i = 1; $i <= 5; $i++)
+                <tr class="border-2">
+                    <td class="p-2">
+                        @if($i == 1)
+                            <p>メイン画像</p>
+                        @endif
+                    </td>
+                    <td class="p-2">
+                        <input type="file" id="image{{ $i }}" name="image{{ $i }}" value="{{ old('image' . $i) ?? $item)}} ">
+                        <button type="button" id="image{{ $i }}-clear" class="bg-blue-200 py-1 px-4 rounded">削除</button>
+                    </td>
+                    <td id="preview{{ $i }}" class="p-2"><p>画像がありません</p></td>
+                </tr>
+            @endfor
+        </tbody>
+        </table>
+
         <input class="block mt-8 mb-10 bg-blue-200 py-2 px-4 rounded" type="submit" value="商品の更新">
     </form>
-</section>
-<section class="mb-20">
-    <h1 class="my-4">メイン画像</h1>
-    <img class="w-48" src="{{ asset($item->primaryphoto_url) }}">
-    <h1 class="my-4">画像ファイル（最大 5 枚）：<span class="text-gray-600">画像をクリックするとメイン画像を変更できます。</span></h1>
-    <div class="flex flex-wrap">
-        @foreach($item->itemphotos as $image)
-            <div class="px-4">
-                <div>
-                    @if($image->url == $item->primaryphoto_url)
-                        <img class="w-32 ring-4" src="/{{ $image->url }}">
-                    @else
-                        <form action="{{ route('admin.item.primaryphoto_update', ['item' => $image->id]) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <button type="submit">
-                                <img class="w-32 hover:opacity-70" src="{{ asset($image->url) }}">
-                            </button>
-                        </form>
-                    @endif
-                </div>
-                <form action="{{ route('admin.itemphoto.destroy', ['itemphoto' => $image->id]) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <div class="text-center">
-                        <input class="item-photo-delete mt-2 py-1 px-6 bg-white border rounded" type="submit" value="削除">
-                    </div>
-                </form>
-            </div>
-        @endforeach
-    </div>
-    @if($item->itemphotos->count() < 5)
-        <p class="text-sm py-2">新規画像ファイルの追加</p>
-        <form action="{{ route('admin.itemphoto.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <input id="new-image" type="file" name="new-image">
-            <input type="hidden" name="id" value="{{ $item->id }}">
-            <button type="submit" class="bg-blue-200 py-2 px-4 rounded"><i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp;画像のアップロード</button>
-        </form>
-    @endif
 </section>
 </x-app-layout>
 
 <script>
-    //削除の確認
-    $(".item-photo-delete").on('click', () => {
-        if(!confirm("削除してもよろしいですか？")) return false;
-    });
-</script>
 
+for(let i = 1; i <= 5; i++) {
+    const showPreview = (event) => {
+        const fileData = event.target.files[0];
+        if(fileData.type.match('image/*')) {
+            let fileReader = new FileReader();
+            fileReader.addEventListener('load', () => {
+                document.querySelector('#preview' + i).innerHTML = `<img class="w-36" src="${fileReader.result}">`;
+            });
+            if(fileData) fileReader.readAsDataURL(fileData);
+        } else {
+            document.querySelector('#preview' +i).innerHTML = '<p>ファイル形式が画像ではありません</p>';
+            document.querySelector('#image' + i).value = '';
+        }
+    }
+
+    document.querySelector('#image' + i).addEventListener('onLoad', showPreview);    
+    document.querySelector('#image' + i).addEventListener('change', showPreview);
+
+    document.querySelector('#image' + i +'-clear').addEventListener('click', () => {
+        document.querySelector('#image' + i).value = '';
+        document.querySelector('#preview' + i).innerHTML = '<p>画像がありません</p>';
+    });
+}
+
+</script>

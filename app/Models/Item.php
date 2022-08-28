@@ -26,9 +26,9 @@ class Item extends Model
         return $this->belongsTo(Subcat::class);
     }
 
-    public function itemphotos()
+    public function itemimages()
     {
-        return $this->hasMany(Itemphoto::class);
+        return $this->hasMany(Itemimage::class);
     }
 
     public function purchases()

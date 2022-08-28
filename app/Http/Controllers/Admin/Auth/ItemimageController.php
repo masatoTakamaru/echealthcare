@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Item;
-use App\Models\Itemphoto;
+use App\Models\Itemimage;
 
-class ItemphotoController extends Controller
+class ItemimageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -43,14 +43,14 @@ class ItemphotoController extends Controller
 
         $file_name = $request->file('new-image')->getClientOriginalName();
         $item = Item::find($request->id);
-        $item->itemphotos()->create([
+        $item->itemimages()->create([
             'url' => 'storage/itemPhotos/' . sprintf('%1$09d', $item->id) . '/' . $file_name,
         ]);
 
-        $item_photo = $request->file('new-image')
+        $item_image = $request->file('new-image')
             ->storeAs('public/itemPhotos/' . sprintf('%1$09d', $item->id), $file_name);
 
-        if($item_photo) {
+        if($item_image) {
             session()->flash('flashmessage', '画像を追加しました。');
         }
 
@@ -101,8 +101,8 @@ class ItemphotoController extends Controller
      */
     public function destroy($id)
     {
-        $item = Itemphoto::find($id)->item;
-        $succeeded = Itemphoto::destroy($id);
+        $item = Itemimage::find($id)->item;
+        $succeeded = Itemimage::destroy($id);
 
         if($succeeded) {
             session()->flash('flashmessage', '画像を削除しました。');

@@ -24,7 +24,6 @@ return new class extends Migration
             $table->bigInteger('cat_id')->comment('カテゴリーID');
             $table->bigInteger('subcat_id')->comment('サブカテゴリーID');
             $table->string('maker')->comment('製造業者名');
-            $table->string('primaryphoto_url')->nullable()->comment('メイン画像URL');
             $table->timestamps();
         });
     }

@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Itemphoto extends Model
+class Itemimage extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'item_id',
+        'image_id',
         'url',
-        'is_main',
     ];
 
     public function item()

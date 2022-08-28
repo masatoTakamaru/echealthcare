@@ -6,7 +6,7 @@
         <a href="{{ route('user.single', ['id' => $item->id]) }}">
             <div class="item-thumbnail-wrapper">
                 <img class="item-thumbnail"
-                    src="{{ asset($item->primaryphoto_url) }}">
+                    src="{{ asset($item->primaryimage_url) }}">
             </div>
             <div class="item-name">
                 {{ $item->name }}

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Auth\ItemRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Item;
-use App\Models\Itemphoto;
+use App\Models\Itemimage;
 use App\Models\Cat;
 
 class ItemController extends Controller
@@ -62,6 +62,14 @@ class ItemController extends Controller
      */
     public function store(ItemRequest $request)
     {
+        $request->validate([
+            'image1' => ['required', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+            'image2' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+            'image3' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+            'image4' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+            'image5' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+        ]);
+
         $input = $request->only([
             'header',
             'name',
@@ -72,61 +80,33 @@ class ItemController extends Controller
             'cat_id',
             'subcat_id',
             'maker',
-            'image1',
-            'image2',
-            'image3',
-            'image4',
-            'image5',
         ]);
-
-        $request->validate([
-            'image1' => ['required', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
-            'image2' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
-            'image3' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
-            'image4' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
-            'image5' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
-        ]);
-
-        dd($request->image1);
 
         try {
             DB::beginTransaction();
 
-            $item = Item::find($request->id);
+            $item = Item::create($input);
 
-            for( $i = 1; $i <= 5; $i++) {
-                $file_name = $request->file('image' . $i)->getClientOriginalName();
-                $item->itemphotos()->create([
-                    'url' => 'storage/itemPhotos/' . sprintf('%1$09d', $item->id) . '/' . $file_name,
-                ]);
-                $item_photo = $request->file('image' . $i)
-                    ->storeAs('public/itemPhotos/' . sprintf('%1$09d', $item->id), $file_name);    
+            for($i = 1; $i <= 5; $i++) {
+                if($request->file('image' . $i)) {
+                    $file_name = $request->file('image' . $i)->getClientOriginalName();
+                    $item->itemimages()->create([
+                        'image_id' => $i,
+                        'url' => 'storage/itemPhotos/' . sprintf('%1$09d', $item->id) . '/' . $file_name,
+                    ]);
+                    $item_image = $request->file('image' . $i)
+                        ->storeAs('public/itemPhotos/' . sprintf('%1$09d', $item->id), $file_name);
+                }
             }
-
+            DB::commit();
+            session()->flash('flashmessage', '商品を登録しました。');
         } catch (\Throwable $e) {
             \DB::rollback();
             \Log::error($e);
             throw $e;
         }
 
-        $item = Item::create($input);
-
-        if($item) {
-            session()->flash('flashmessage', '商品を登録しました。');
-        }
-
         return redirect()->route('admin.item.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -195,11 +175,11 @@ class ItemController extends Controller
     }
 
 
-    public function primaryphoto_update($id)
+    public function primaryimage_update($id)
     {
-        $itemphoto = Itemphoto::find($id);
-        $item = $itemphoto->item;
-        $item->primaryphoto_url = $itemphoto->url;
+        $itemimage = Itemimage::find($id);
+        $item = $itemimage->item;
+        $item->primaryimage_url = $itemimage->url;
         $succeeded = $item->save();
  
         if($succeeded) {

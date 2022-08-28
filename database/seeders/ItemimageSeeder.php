@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Item;
 
-class ItemphotoSeeder extends Seeder
+class ItemimageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -23,25 +23,19 @@ class ItemphotoSeeder extends Seeder
         $amount = Item::all()->count();
         for($id = 1; $id <=$amount; $id++) {
             $item = Item::find($id);
-            $photo_amount = rand(2,5);
+            $image_amount = rand(2,5);
             //製品写真をディレクトリにコピー
-            for($i = 1; $i <= $photo_amount; $i++) {
+            for($i = 1; $i <= $image_amount; $i++) {
                 Storage::copy(
                     'samplePhoto/samplePhoto0' . $i . '.jpg',
-                    '/public/itemPhotos/'. $item->serial . '/'. $i . '.jpg'
+                    '/public/itemPhotos/'. $item->id . '/'. $i . '.jpg'
                 );
-                DB::table('itemphotos')->insert([
+                DB::table('itemimages')->insert([
                     'item_id' => $item->id,
-                    'url' => 'storage/' . 'itemPhotos/'. $item->serial . '/'. $i . '.jpg',
+                    'image_id' => $i,
+                    'url' => 'storage/' . 'itemPhotos/'. $item->id . '/'. $i . '.jpg',
                 ]);
             }
-        }
-        $items = Item::all();
-        foreach($items as $item) {
-            $itemphoto = $item->itemphotos()->first();
-            $item->update([
-                'primaryphoto_url' => $itemphoto->url,
-            ]);
         }
     }
 }

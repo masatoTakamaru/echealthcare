@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             CatSeeder::class,
             SubcatSeeder::class,
             ItemSeeder::class,
-            ItemphotoSeeder::class,
+            ItemimageSeeder::class,
             RecommendSeeder::class,
             AdminSeeder::class,
         ]);

@@ -5,17 +5,17 @@
         {{ $item->header }}
     </div>
     <div class="flex justify-center">
-        <img class="w-full md:w-96 p-4" src="{{ asset($mainphoto_url) }}">
+        <img class="w-full md:w-96 p-4" src="{{ asset($mainimage_url) }}">
     </div>
     <div class="flex justify-center flex-wrap items-center">
-        @foreach($item->itemphotos as $photo)
-            @if($photo->url == $item->primaryphoto_url)
-                <a class="m-1 border" href="{{ route('user.single', ['id' => $item->id, 'another' => $photo->id]) }}">
-                    <img class="w-14 p-1" src="{{ asset($photo->url) }}">
+        @foreach($item->itemimages as $image)
+            @if($image->url == $item->primaryimage_url)
+                <a class="m-1 border" href="{{ route('user.single', ['id' => $item->id, 'another' => $image->id]) }}">
+                    <img class="w-14 p-1" src="{{ asset($image->url) }}">
                 </a>
             @else
-                <a class="m-1 border" href="{{ route('user.single', ['id' => $item->id, 'another' => $photo->id]) }}">
-                    <img class="w-14 p-1" src="{{ asset($photo->url) }}">
+                <a class="m-1 border" href="{{ route('user.single', ['id' => $item->id, 'another' => $image->id]) }}">
+                    <img class="w-14 p-1" src="{{ asset($image->url) }}">
                 </a>
             @endif
         @endforeach

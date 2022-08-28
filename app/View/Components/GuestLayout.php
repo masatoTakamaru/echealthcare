@@ -21,7 +21,7 @@ class GuestLayout extends Component
         $new_items = Item::orderBy('id', 'desc')
             ->take(6)
             ->get();
-        //dd($new_items->first()->itemphotos);
+        //dd($new_items->first()->itemimages);
         $recommend_ids = Recommend::all();
         $recommends = collect([]);
         foreach($recommend_ids as $id) {

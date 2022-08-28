@@ -53,7 +53,7 @@
 @foreach($items as $item)
     <tr class="even:bg-gray-200">
         <td class="px-2 text-right">{{ $item->id }}</td>
-        <td><a class="font-blue-600" href="{{ route('admin.item.edit', ['item' => $item->id]) }}">{{ $item->name }}</td>
+        <td><a class="text-blue-600 underline" href="{{ route('admin.item.edit', ['item' => $item->id]) }}">{{ $item->name }}</td>
         <td>{{ $item->serial }}</td>
         <td class="text-right px-2">{{ number_format($item->price) }}</td>
         <td class="text-right px-2">{{ $item->inventory }}</td>

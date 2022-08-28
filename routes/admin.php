@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\Auth\DashboardController;
 use App\Http\Controllers\Admin\Auth\UserIndexController;
 use App\Http\Controllers\Admin\Auth\RecommendController;
 use App\Http\Controllers\Admin\Auth\ItemController;
-use App\Http\Controllers\Admin\Auth\ItemphotoController;
+use App\Http\Controllers\Admin\Auth\ItemimageController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:admins')->group(function () {
@@ -22,9 +22,9 @@ Route::middleware('auth:admins')->group(function () {
         ->name('user-index');
     Route::resource('recommend', RecommendController::class);
     Route::resource('item', ItemController::class);
-    Route::put('item/{item}/primaryphoto_update', [ItemController::class, 'primaryphoto_update'])
-        ->name('item.primaryphoto_update');
-    Route::resource('itemphoto', ItemphotoController::class);
+    Route::put('item/{item}/primaryimage_update', [ItemController::class, 'primaryimage_update'])
+        ->name('item.primaryimage_update');
+    Route::resource('itemimage', ItemimageController::class);
 });
 
 Route::middleware('guest')->group(function () {
