@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('favicon.ico') }}" id="favicon">
-    <link rel="stylesheet" type="text/css" href="{{ asset('font-awesome-4.7.0/css/font-awesome.min.css') }}" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -14,18 +11,43 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-<header class="w-full">
-    <div class="bg-pink h-10 px-2 flex justify-between items-center">
-        <a class="font-darkbrown" href="/">健康美容アイテム通販サイトサンプル</a>
-        <div class="flex items-center">
+<header class="navigation-header w-full bg-pink">
+    <div class="h-16 px-6 flex justify-between items-center">
+        <a class="font-darkbrown" href="/">ECヘルスケア</a>
+        <div class="inline-flex items-center">
             <div class="mr-4">
-                <a href="{{ route('user.cart.index') }}">
-                    <i class="fa fa-shopping-cart text-xl font-darkbrown" aria-hidden="true"></i>
-                    <span class="shoppingcart-counter font-darkbrown">{{ $cart_items->count() }}</span>
+                <a class="relarive" href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-auto mr-auto">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                    <p class="label-extra-small">見つける</p>
                 </a>
             </div>
-            <button class="mr-2 md:hidden" id="toggleMenuButton">
-                <i class="fa fa-bars text-xl font-darkbrown" aria-hidden="true"></i>
+            <div class="mr-4">
+                <a class="relarive" href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-auto mr-auto">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                    </svg>
+                    <p class="label-extra-small">お気に入り</p>
+                </a>
+            </div>
+            <div class="mr-4">
+                <a class="relative" href="{{ route('user.cart.index') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-auto mr-auto">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                    </svg>
+                    <div class="shoppingcart-counter">
+                        <span class="text-center">{{ $cart_items->count() }}</span>
+                    </div>
+                    <p class="label-extra-small">カート</p>
+                </a>
+            </div>
+            
+            <button class="md:hidden" id="toggleMenuButton">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-auto mr-auto">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <p class="label-extra-small">メニュー</p>
             </button>
             <!-- responsive menu -->
             <nav class="mr-6 hidden md:block">
@@ -38,7 +60,7 @@
                     <ul class="flex">
                     @unless(Auth::id())
                         <li>
-                            <a class="mr-4" href="{{ route('user.login') }}">ログイン&nbsp;<i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                            <a class="mr-4" href="{{ route('user.login') }}">ログイン&nbsp;<img src="{{ asset('icons/login.svg') }}"></a>
                         </li>
                         <li>
                             <a class="mr-4" href="{{ route('user.register') }}">会員登録</a>
@@ -71,7 +93,7 @@
     <ul>
     @unless(Auth::id())
         <li>
-            <a href="{{ route('user.login') }}">ログイン&nbsp;<i class="fa fa-sign-in" aria-hidden="true"></i></a>
+            <a href="{{ route('user.login') }}">ログイン&nbsp;<img class="inline h-4 w-4" src="{{ asset('icons/login.svg') }}"></a>
         </li>
         <li>
             <a href="{{ route('user.register') }}">会員登録</a>
@@ -111,7 +133,7 @@
             </div>
         </div>
     </div>
-    <!--header navigation-->
+    <!--middle navigation-->
     <nav class="under-top-nav">
         <ul class="mb-2">
             <li>
@@ -136,22 +158,22 @@
     </nav>
 
     <div class="flex flex-wrap md:flex-nowrap mb-12 justify-center">
+        <article class="p-2 mb-8 md:order-2">
+            {{ $slot }}
+        </article>
         <aside>
             <!-- カテゴリメニュー -->
             <ul class="categories">
             @foreach($cats as $cat)
                 <li class="category-name p-2">
                     <a class="flex items-center" href="{{ route('user.category', ['cat_id'=>$cat->id]) }}">
-                        <p class="font-bold">{{ $cat->name }}&nbsp;</p>
+                        <p>{{ $cat->name }}&nbsp;</p>
                         <img class="category-icon w-6" src="{{ asset('images/category/categoryIcon0' . $cat->id . '.webp') }} ">
                     </a>
                 </li>
             @endforeach
             </ul>
         </aside>
-        <article class="p-2 mb-8">
-            {{ $slot }}
-        </article>
     </div>
 </main>
 <footer class="bg-pink p-4">

@@ -33,7 +33,7 @@ class ItemimageSeeder extends Seeder
                 DB::table('itemimages')->insert([
                     'item_id' => $item->id,
                     'image_id' => $i,
-                    'url' => 'storage/' . 'itemPhotos/'. $item->id . '/'. $i . '.jpg',
+                    'url' => $item->id . '/'. $i . '.jpg',
                 ]);
             }
         }

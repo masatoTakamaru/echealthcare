@@ -60,19 +60,29 @@
   background-color: #ff9900;
 }
 
+.label-extra-small {
+  font-size: 10px;
+  line-height: 12px;
+}
+
 body {
-  font-family: "Avenir", "Helvetica Neue", "Helvetica", "Arial", "Hiragino Sans", "ヒラギノ角ゴシック", YuGothic, "Yu Gothic", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-family: ヒラギノ角ゴ Pro, Hiragino Kaku Gothic Pro, Hiragino Sans, Noto Sans CJK JP, Osaka, Meiryo, メイリオ, MS PGothic, ＭＳ Ｐゴシック, YuGothic, Yu Gothic, Hiragino Sans GB, Helvetica Neue, HelveticaNeue, Helvetica, Noto Sans, Roboto, Arial, Arial Unicode MS, sans-serif;
+}
+
+.navigation-header {
+  height: 65px;
 }
 
 .shoppingcart-counter {
-  position: relative;
-  top: -8px;
-  left: -12px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
   color: white;
   font-size: 10px;
   padding: 1px 6px;
   background-color: #b12704;
   border-radius: 20px;
+  min-width: 1rem;
 }
 
 .HeaderHamburger li {
@@ -123,10 +133,6 @@ body {
 }
 .categories li:first-child {
   border-top: lightgray 1px solid;
-}
-
-.subcats li {
-  padding: 10px 10px;
 }
 
 .font-alert {

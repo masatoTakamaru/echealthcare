@@ -16,7 +16,7 @@
         </select>
         <input class="py-1 px-4 bg-white border rounded" type="submit" value="選択">
     </form>
-    <form action="{{ route('admin.item.update', ['item' => $item->id]) }}" method="POST">
+    <form action="{{ route('admin.item.update', ['item' => $item->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -45,19 +45,39 @@
 
         <label class="mt-2 block">画像ファイル（最大５枚）</label>
         <table class="bg-white">
+        <thead>
+            <tr>
+                <th class="border-2">アップロード画像</th>
+                <th class="border-2">画像の変更・削除</th>
+            </tr>
+        </thead>
         <tbody>
             @for($i = 1; $i <= 5; $i++)
                 <tr class="border-2">
-                    <td class="p-2">
-                        @if($i == 1)
-                            <p>メイン画像</p>
+                    {{-- uploaded preview --}}
+                    <td id="{{ 'preview' . $i }}" class="p-2 border-2">
+                        @if($up_images[$i])
+                            <div class="flex items-center">
+                                <div>
+                                    <img class="w-36" src="{{ asset('storage/itemPhotos/' . $item->itemimages()->where('image_id', $i)->first()->url) }}">
+                                    @if($i == 1)
+                                        <p class="text-center">メイン画像</p>
+                                    @endif
+                                </div>
+                            </div>
+                        @else
+                            <p class="text-center">画像はありません</p>
                         @endif
                     </td>
-                    <td class="p-2">
-                        <input type="file" id="image{{ $i }}" name="image{{ $i }}" value="{{ old('image' . $i) ?? $item)}} ">
-                        <button type="button" id="image{{ $i }}-clear" class="bg-blue-200 py-1 px-4 rounded">削除</button>
+                    {{-- change or delete --}}
+                    <td class="p-2 border-2">
+                        <div id="file{{ $i }}" class="flex items-center">
+                            <input type="file" id="image{{ $i }}" class="p-2" name="image{{ $i }}" value="{{ old('image' . $i)}}">
+                            <button type="button" id="image{{ $i }}-clear" class="bg-blue-200 py-1 px-4 mr-4 rounded">選択をクリア</button>
+                        </div>
+                        <input type="button" id="image{{$i}}DeleteButton" class="py-1 px-4 border-blue-200 border-2 bg-white rounded" name="image{{$i}}Delete" value="削除">
+                        <input type="hidden" id="image{{$i}}Delete" name="imageDelete[{{ $i }}]">
                     </td>
-                    <td id="preview{{ $i }}" class="p-2"><p>画像がありません</p></td>
                 </tr>
             @endfor
         </tbody>
@@ -70,7 +90,21 @@
 
 <script>
 
+//初期化
+const up_images = @json($up_images);
+window.addEventListener('DOMContentLoaded', () => {
+    for(i = 1; i <= 5; i++) {
+        if(up_images[i]) { //アップロードされた画像が存在する
+            document.querySelector('#file' + i).style.display = 'none';
+        } else { //存在しない
+            document.querySelector('#image' + i + 'DeleteButton').style.display = 'none';
+        }
+    }
+});
+
 for(let i = 1; i <= 5; i++) {
+
+    //プレビューの表示
     const showPreview = (event) => {
         const fileData = event.target.files[0];
         if(fileData.type.match('image/*')) {
@@ -81,16 +115,25 @@ for(let i = 1; i <= 5; i++) {
             if(fileData) fileReader.readAsDataURL(fileData);
         } else {
             document.querySelector('#preview' +i).innerHTML = '<p>ファイル形式が画像ではありません</p>';
-            document.querySelector('#image' + i).value = '';
         }
     }
 
-    document.querySelector('#image' + i).addEventListener('onLoad', showPreview);    
+    //ファイルが選択された場合
     document.querySelector('#image' + i).addEventListener('change', showPreview);
 
+    //選択をクリアがクリックされた場合
     document.querySelector('#image' + i +'-clear').addEventListener('click', () => {
-        document.querySelector('#image' + i).value = '';
-        document.querySelector('#preview' + i).innerHTML = '<p>画像がありません</p>';
+        document.querySelector('#image' + i).value = '';        
+        document.querySelector('#preview' + i).innerHTML = '<p class="text-center">画像はありません</p>';
+    });
+
+    //削除確認メッセージ
+    document.querySelector('#image' + i + 'DeleteButton').addEventListener('click', () => {
+        if(!confirm("削除してもよろしいですか？")) return false;
+        document.querySelector('#preview' + i).innerHTML = '<p class="text-center">画像はありません</p>';
+        document.querySelector('#file' + i).style.display = 'block';
+        document.querySelector('#image' + i + 'DeleteButton').style.display = 'none';
+        document.querySelector('#image' + i + 'Delete').value = 'true';
     });
 }
 

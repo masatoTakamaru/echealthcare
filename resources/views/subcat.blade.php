@@ -5,7 +5,7 @@
             {{ $subcat->cat->name }}
         </a>
         &nbsp;
-        <i class="fa fa-chevron-right text-gray-300" aria-hidden="true"></i>
+        <img src="{{ asset('icons/chevron-right.svg') }}">
         &nbsp;
         {{ $subcat->name }}
     </div>

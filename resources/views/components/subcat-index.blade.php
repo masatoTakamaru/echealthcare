@@ -1,9 +1,13 @@
-<nav class="ml-4">
-    <ul class="subcats md:flex flex-wrap mb-4">
+<nav>
+    <ul class="md:flex mb-4">
         @foreach($cat->subcats as $subcat)
-            <li>
-                <i class="fa fa-chevron-right text-gray-300" aria-hidden="true"></i>
-                <a href="{{ route('user.category', ['cat_id' => $cat->id, 'subcat_id' => $subcat->id]) }}">{{ $subcat->name }}</a>
+            <li class="border-b first:border-t">
+                <a href="{{ route('user.category', ['cat_id' => $cat->id, 'subcat_id' => $subcat->id]) }}">
+                    <div class="relative py-2 pl-4">
+                        <span class="text-sm">{{ $subcat->name }}</span>
+                        <img class="h-6 w-6 absolute top-2 right-0" src="{{ asset('icons/chevron-right-gray.svg') }}">
+                    </div>
+                </a>
             </li>
         @endforeach
     </ul>

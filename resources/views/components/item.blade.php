@@ -6,7 +6,7 @@
         <a href="{{ route('user.single', ['id' => $item->id]) }}">
             <div class="item-thumbnail-wrapper">
                 <img class="item-thumbnail"
-                    src="{{ asset($item->primaryimage_url) }}">
+                    src="{{ asset('storage/itemPhotos/' . $item->itemimages()->where('image_id', 1)->first()->url) }}">
             </div>
             <div class="item-name">
                 {{ $item->name }}

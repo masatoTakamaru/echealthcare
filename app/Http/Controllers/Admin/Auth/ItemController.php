@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Auth\ItemRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Item;
 use App\Models\Itemimage;
 use App\Models\Cat;
@@ -48,10 +49,10 @@ class ItemController extends Controller
         $cats = Cat::all();
         $request->cat_id ? $current_cat_id = $request->cat_id : $current_cat_id = $cats->first()->id;
 
-        return view('admin.auth.item.create', [
-            'cats' => $cats,
-            'current_cat_id' => $current_cat_id,
-        ]);
+        return view('admin.auth.item.create', compact(
+            'cats',
+            'current_cat_id'
+        ));
     }
 
     /**
@@ -90,12 +91,12 @@ class ItemController extends Controller
             for($i = 1; $i <= 5; $i++) {
                 if($request->file('image' . $i)) {
                     $file_name = $request->file('image' . $i)->getClientOriginalName();
+                    $item_image = $request->file('image' . $i)
+                        ->storeAs('public/itemPhotos/' . $item->id , $file_name);
                     $item->itemimages()->create([
                         'image_id' => $i,
-                        'url' => 'storage/itemPhotos/' . sprintf('%1$09d', $item->id) . '/' . $file_name,
+                        'url' => $item->id . '/' . $file_name,
                     ]);
-                    $item_image = $request->file('image' . $i)
-                        ->storeAs('public/itemPhotos/' . sprintf('%1$09d', $item->id), $file_name);
                 }
             }
             DB::commit();
@@ -120,12 +121,16 @@ class ItemController extends Controller
         $cats = Cat::all();
         $request->cat_id ? $current_cat_id = $request->cat_id : $current_cat_id = $cats->first()->id;
         $item = Item::find($id);
+        for($i = 1; $i <= 5; $i++) {
+            $item->itemimages()->where('image_id', $i)->first() ? $up_images[$i] = true : $up_images[$i] = false;
+        }
 
-        return view('admin.auth.item.edit', [
-            'cats' => $cats,
-            'current_cat_id' => $current_cat_id,
-            'item' => $item,
-        ]);
+        return view('admin.auth.item.edit', compact(
+            'cats',
+            'current_cat_id',
+            'item',
+            'up_images',
+        ));
 
     }
 
@@ -138,6 +143,14 @@ class ItemController extends Controller
      */
     public function update(ItemRequest $request, $id)
     {
+        $request->validate([
+            'image1' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+            'image2' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+            'image3' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+            'image4' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+            'image5' => ['nullable', 'max:1024', 'mimes:jpg,jpeg,png,webp,gif'],
+        ]);
+
         $input = $request->only([
             'header',
             'name',
@@ -148,47 +161,44 @@ class ItemController extends Controller
             'cat_id',
             'subcat_id',
             'maker',
-            'image1',
-            'image2',
-            'image3',
-            'image4',
-            'image5',
         ]);
 
-        $item = Item::find($id)->update([
-            'header' => $request->header,
-            'name' => $request->name,
-            'serial' => $request->serial,
-            'price' => $request->price,
-            'inventory' => $request->inventory,
-            'spec' => $request->spec,
-            'cat_id' => $request->cat_id,
-            'subcat_id' => $request->subcat_id,
-            'maker' => $request->maker,
-        ]);
+        try {
+            DB::beginTransaction();
 
-        if($item) {
+            Item::find($id)->update($input);
+
+            $item = Item::find($id);
+
+            //画像ファイルの保存
+            for($i = 1; $i <= 5; $i++) {
+                //指定された画像を削除
+                if($request->imageDelete[$i]) {
+                    $image = $item->itemimages()->where('image_id', $i)->first();
+                    Storage::disk('public')->delete('/itemPhotos/' . $image->url);
+                    $item->itemimages()->where('image_id', $i)->first()->delete();
+                }
+                //ファイルが選択されている
+                if($request->file('image' . $i)) {
+                    $file_name = $request->file('image' . $i)->getClientOriginalName();
+                    $request->file('image' . $i)
+                        ->storeAs('public/itemPhotos/' . $item->id, $file_name);
+                    $item->itemimages()->create([
+                        'image_id' => $i,
+                        'url' => $item->id . '/' . $file_name,
+                    ]);
+                }
+            }
+
+            DB::commit();
             session()->flash('flashmessage', '商品を更新しました。');
+        } catch (\Throwable $e) {
+            \DB::rollback();
+            \Log::error($e);
+            throw $e;
         }
 
         return redirect()->route('admin.item.index');
-    }
-
-
-    public function primaryimage_update($id)
-    {
-        $itemimage = Itemimage::find($id);
-        $item = $itemimage->item;
-        $item->primaryimage_url = $itemimage->url;
-        $succeeded = $item->save();
- 
-        if($succeeded) {
-            session()->flash('flashmessage', 'メイン画像を変更しました。');
-        }
-
-        return redirect()->route('admin.item.edit', [
-            'item' => $item->id,
-        ]);
     }
 
     /**

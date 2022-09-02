@@ -4,7 +4,7 @@
         <form action="{{ route('admin.item.index') }}" method="GET">
             <input class="rounded" type="text" name="keyword" value="{{ $keyword }}">
             <span class="border p-1 bg-gray-300 rounded">
-                <button type="submit">検索&nbsp;<i class="fa fa-search" aria-hidden="true"></i></button>
+                <button type="submit">検索</button>
             </span>
         </form>
     </div>
@@ -21,7 +21,7 @@
                 @endforeach
             </select>
             <span class="border p-1 bg-gray-300 rounded">
-                <button type="submit">選択&nbsp;<i class="fa fa-search" aria-hidden="true"></i></button>
+                <button type="submit">選択</button>
             </span>
         </form>
     </div>

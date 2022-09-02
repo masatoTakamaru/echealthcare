@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" href="{{ asset('favicon.ico') }}" id="favicon">
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>管理者</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('font-awesome-4.7.0/css/font-awesome.min.css') }}" />
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>

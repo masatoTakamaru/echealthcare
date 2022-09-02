@@ -44,7 +44,7 @@ class ItemimageController extends Controller
         $file_name = $request->file('new-image')->getClientOriginalName();
         $item = Item::find($request->id);
         $item->itemimages()->create([
-            'url' => 'storage/itemPhotos/' . sprintf('%1$09d', $item->id) . '/' . $file_name,
+            'url' => sprintf('%1$09d', $item->id) . '/' . $file_name,
         ]);
 
         $item_image = $request->file('new-image')
