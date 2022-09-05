@@ -12,7 +12,7 @@
                 {{ $item->name }}
             </div>
             <div class="item-price font-price mt-2">
-                {{ number_format($item->price) }}円
+                &yen{{ number_format($item->price) }}
             </div>
         </a>
     </div>

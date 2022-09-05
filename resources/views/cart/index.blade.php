@@ -16,9 +16,9 @@
                 <li>{{ $item->name }}</li>
                 <li>個数&nbsp;:&nbsp;{{ $item->quantity }}</li>
                 @if($item->quantity == 1) 
-                    <li class="font-price">{{ number_format($item->price) }}&nbsp;円</li>
+                    <li class="font-price">&yen{{ number_format($item->price) }}</li>
                 @else
-                    <li><span class="font-price">{{ number_format($item->getPriceSum()) }}&nbsp;円</span>(1個{{ number_format($item->price) }}円)</li>
+                    <li><span class="font-price">&yen{{ number_format($item->getPriceSum()) }}</span>(1個&nbsp;&yen{{ number_format($item->price) }})</li>
                 @endif
                 <li>
                     <form action="{{ route('user.cart.destroy', ['cart' => $item->id]) }}" method="POST">
@@ -39,7 +39,7 @@
         <tr>
         <td></td>
         <td>
-            <span>小計&nbsp;:&nbsp;</span><span class="font-price">{{ number_format(Cart::getSubTotal()) }}&nbsp;円</span>
+            <span>小計&nbsp;:&nbsp;</span><span class="font-price">&yen{{ number_format(Cart::getSubTotal()) }}</span>
         </td>
         </tr>
         </tbody>

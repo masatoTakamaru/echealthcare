@@ -51,10 +51,16 @@
             </div>
             <div class="text-center mt-8">
                 <span class="bg-primary py-2 px-8 rounded shadow">
-                    <input type="submit" value="更新">
+                    <input type="submit" id="updateButton" value="更新">
                 </span>
             </div>
         </form>
     </div>
 </section>
 </x-guest-layout>
+
+<script>
+document.querySelector('#updateButton').addEventListener('click', () => {
+    if(!confirm('更新してもよろしいですか？')) return false;
+});
+</script>

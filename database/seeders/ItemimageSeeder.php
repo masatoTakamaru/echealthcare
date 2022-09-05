@@ -18,7 +18,7 @@ class ItemimageSeeder extends Seeder
     public function run()
     {
         //ディレクトリのファイルを削除
-        $success = Storage::deleteDirectory('itemPhotos');
+        $success = Storage::deleteDirectory('/public/itemPhotos');
 
         $amount = Item::all()->count();
         for($id = 1; $id <=$amount; $id++) {
@@ -27,13 +27,13 @@ class ItemimageSeeder extends Seeder
             //製品写真をディレクトリにコピー
             for($i = 1; $i <= $image_amount; $i++) {
                 Storage::copy(
-                    'samplePhoto/samplePhoto0' . $i . '.jpg',
-                    '/public/itemPhotos/'. $item->id . '/'. $i . '.jpg'
+                    'samplePhoto/sample' . rand(1, 16) . '.webp',
+                    '/public/itemPhotos/'. $item->id . '/'. $i . '.webp'
                 );
                 DB::table('itemimages')->insert([
                     'item_id' => $item->id,
                     'image_id' => $i,
-                    'url' => $item->id . '/'. $i . '.jpg',
+                    'url' => $item->id . '/'. $i . '.webp',
                 ]);
             }
         }

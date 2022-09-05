@@ -3,7 +3,6 @@
     <h1>{{ $cat->name }}</h1>
     <p class="ml-4 text-sm">{{ $amount }}&nbsp;点の商品</p>
 </section>
-<x-subcat-index :cat="$cat" />
 <section>
     <div class="flex flex-wrap justify-evenly">
         @foreach($items as $item)
@@ -16,4 +15,5 @@
         {{ $items->links('vendor.pagination.default') }}
     </div>
 </section>
+<x-subcat-index :cat="$cat" />
 </x-guest-layout>

@@ -1,7 +1,7 @@
 <x-guest-layout>
 <section class="p-4">
-    <div class="font-brown font-bold ml-4">
-        {{ $item->header }}
+    <div class="py-2 font-bold">
+        {{ $item->name }}
     </div>
     <div class="flex justify-center">
         <img class="w-full md:w-96 p-4" src="{{ asset('storage/itemPhotos/' . $mainimage_url) }}">
@@ -19,16 +19,17 @@
             @endif
         @endforeach
     </div>
-    <div class="font-bold text-justify">
-        {{ $item->name }}
+    <div class="font-brown font-bold my-2">
+        {{ $item->header }}
     </div>
-    <div class="py-2">
+    <div class="my-2 text-sm">
         {{ $item->maker }}
     </div>
     <div class="font-price text-lg mb-4">
-        {{ number_format($item->price) }}円
+        &yen{{ number_format($item->price) }}
     </div>
-    <div class="mb-4">
+    {{-- purchase form --}}
+    <div class="mb-4 flex items-center">
         @if($max_quantity)
             <form action="{{ route('user.cart.store') }}" method="POST">
                 @csrf
@@ -40,39 +41,53 @@
                         <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
                 </select>
-                <span class="ml-4 py-2 px-4 bg-primary rounded-lg">
+                <span class="ml-2 py-2 px-4 bg-primary rounded shadow">
                     <input type="submit" value="カートに入れる" />
                 </span>
             </form>
         @else
-            <p class="soldout">在庫なし</p>
+            <p>在庫なし</p>
         @endif
+        {{-- favorite --}}
+        <span class="border rounded-lg ml-2 border-gray-500">
+            <img class="h-10 w-10 py-2 px-2" src="{{ asset('icons/ui/favorite.svg') }}">
+        </span>
     </div>
-    <div class="singleSerial">
-        シリアル番号&nbsp;:&nbsp;[{{ $item->serial }}]
+    <div>
+        <span class="text-sm">シリアル番号&nbsp;:&nbsp;[{{ $item->serial }}]</span>
     </div>
-    <div class="singleSpec text-justify">
+    <div class="text-justify">
         {{ $item->spec }}
     </div>
-    {{-- social icons --}}
-    <nav class="my-10">
-        <ul class="flex justify-center items-center">
-            <li class="mr-4">
-                <a class="text-xl font-darkbrown" href="//www.facebook.com/sharer/sharer.php?u={{ url()->current() }}&t=" target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="{{ asset('icons/facebook.svg') }}">
-                </a>
-            </li>
-            <li class="mr-4">
-                <a class="text-xl font-darkbrown" href="//twitter.com/intent/tweet?url={{ url()->current() }}&text=" target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="{{ asset('icons/twitter.svg') }}">
-                </a>
-            <li>
-                <a href="//timeline.line.me/social-plugin/share?url={{ url()->current() }}&text=" target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="{{ asset('icons/line.svg') }}">
-                </a>
-            </li>
-        </ul>
-    </nav>
 </section>
+<section class="border p-2">
+    <h2 class="text-sm">お支払い方法</h2>
+    <div class="flex flex-wrap items-center">
+        <img class="mx-4" src="{{ asset('icons/settlements/visa.svg') }}">
+        <img class="mx-4" src="{{ asset('icons/settlements/master.svg') }}">
+        <img class="mx-4" src="{{ asset('icons/settlements/jcb.webp') }}">
+        <img class="mx-4" src="{{ asset('icons/settlements/paypay.webp') }}">
+        <img class="mx-4" src="{{ asset('icons/settlements/rakutenpay.webp') }}">
+    </div>
+</section>
+{{-- social icons --}}
+<nav class="my-8">
+    <ul class="flex justify-center items-center">
+        <li class="mx-4">
+            <a class="text-xl font-darkbrown" href="//www.facebook.com/sharer/sharer.php?u={{ url()->current() }}&t=" target="_blank" rel="nofollow noopener noreferrer">
+                <img src="{{ asset('icons/social/facebook.svg') }}">
+            </a>
+        </li>
+        <li class="mx-4">
+            <a class="text-xl font-darkbrown" href="//twitter.com/intent/tweet?url={{ url()->current() }}&text=" target="_blank" rel="nofollow noopener noreferrer">
+                <img src="{{ asset('icons/social/twitter.svg') }}">
+            </a>
+        <li class="mx-4">
+            <a href="//timeline.line.me/social-plugin/share?url={{ url()->current() }}&text=" target="_blank" rel="nofollow noopener noreferrer">
+                <img src="{{ asset('icons/social/line.svg') }}">
+            </a>
+        </li>
+    </ul>
+</nav>
 <x-subcat-index :cat="$cat" />
 </x-guest-layout>

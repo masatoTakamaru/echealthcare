@@ -1,74 +1,37 @@
-$color-pink: rgb(252, 236, 238);
-$color-brightpink: #f65d75ff;
+[x-cloak] { display: none !important; }
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+.font-railway {
+    font-family: 'Raleway', sans-serif;
+}
+
+$color-pink: #fcecee;
+$color-brightpink: rgb(252, 236, 238);
 $color-yellow: rgb(250, 248, 215);
 $color-blue: #00c8f5;
 $color-red: rgb(229, 125, 117);
 $color-brown: rgb(200, 155, 53);
 $color-darkbrown: rgb(139, 109, 37);
-$color-primary: #ff9900;
+$color-primary: #ffa99f;
 
-.font-pink {
-    color: $color-pink;
-}
+.font-pink { color: $color-pink; }
+.font-brightpink { color: $color-brightpink; }
+.font-yellow { color: $color-yellow; }
+.font-blue { color: $color-blue; }
+.font-red { color: $color-red; }
+.font-brown { color: $color-red; }
+.font-darkbrown { color: $color-darkbrown; }
+.font-price { color: #b12704; font-weight: 700; }
+.font-primary { color: $color-primary; }
+.bg-pink { background-color: $color-pink; }
+.bg-yellow { background-color: $color-yellow; }
+.bg-blue { background-color: $color-blue; }
+.bg-red { background-color: $color-red; }
+.bg-brown { background-color: $color-brown; }
+.bg-primary { background-color: $color-primary; }
 
-.font-brightpink {
-    color: $color-brightpink;
-}
-
-.font-yellow {
-    color: $color-yellow;
-}
-
-.font-blue {
-    color: $color-blue;
-}
-
-.font-red {
-    color: $color-red;
-}
-
-.font-brown {
-    color: $color-red;
-}
-
-.font-darkbrown {
-    color: $color-darkbrown;
-}
-
-.font-price {
-    color: #b12704;
-    font-weight: 700;
-}
-
-.font-primary {
-    color: $color-primary;
-}
-
-.bg-pink {
-    background-color: $color-pink;
-}
-
-.bg-yellow {
-    background-color: $color-yellow;
-}
-
-.bg-blue {
-    background-color: $color-blue;
-}
-
-.bg-red {
-    background-color: $color-red;
-}
-
-.bg-brown {
-    background-color: $color-brown;
-}
-
-.bg-primary {
-    background-color: $color-primary;
-}
-
-.label-extra-small {
+.label-extra-small { 
     font-size: 10px;
     line-height: 12px;
 }
@@ -93,13 +56,9 @@ body {
     min-width: 1rem;
 }
 
-.HeaderHamburger {
+.popUpMenu {
     li {
-        border-bottom: lightgray 1px solid;
-        padding: 10px 30px;
-    }
-    li:first-child {
-        border-top: lightgray 1px solid;
+        padding: 14px 30px;
     }
 }
 
@@ -107,31 +66,6 @@ body {
     height: 110px;
     span {
         font-size: 9px;
-    }
-}
-
-.under-top-nav {
-    ul {
-        display: table;
-        margin: 8px auto;
-        padding: 4px 0;
-        background-color: rgb(255, 170, 130);
-        li {
-            display: table-cell;
-            width: 150px;
-            padding: 4px 0;
-            font-size: 14px;
-            text-align: center;
-            box-sizing: border-box;
-            margin-left: 2px;
-            border-left: white 1px solid;
-        }
-        li:first-child {
-            border: none;
-        }
-        li:hover {
-            color: white;
-        }
     }
 }
 
@@ -187,7 +121,18 @@ article {
 .subcats {
     li {
         font-size: 14px;
-        line-height: 0rem;
+        line-height: 2rem;
+    }
+}
+
+.paginationContainer {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+footer {
+    p {
+        font-size: 12px;
     }
 }
 

@@ -2,16 +2,15 @@
 <section class="breadcrumbsWrapper ml-4 flex items-center">
     <div class="breadcrumbs">
         <a href="{{ route('user.category', ['cat_id' => $subcat->cat->id]) }}">
-            {{ $subcat->cat->name }}
+            <span class="text-sm">{{ $subcat->cat->name }}</span>
         </a>
         &nbsp;
-        <img src="{{ asset('icons/chevron-right.svg') }}">
+        <img class="h-4 w-4 inline" src="{{ asset('icons/ui/chevron-right.svg') }}">
         &nbsp;
-        {{ $subcat->name }}
+        <span class="text-sm">{{ $subcat->name }}</span>
     </div>
-    <p class="ml-4 text-sm">{{ $amount }}&nbsp;点の商品</p>
 </section>
-<x-subcat-index :cat="$cat" />
+<p class="ml-4 text-sm">{{ $amount }}&nbsp;点の商品</p>
 <section>
     <div class="flex flex-wrap justify-evenly">
         @foreach($items as $item)
@@ -19,9 +18,10 @@
         @endforeach
     </div>
 </section>
-<section class="paginationContainer my-8">
+<section class="paginationContainer">
     <div class="paginationWrapper">
         {{ $items->links('vendor.pagination.default') }}
     </div>
 </section>
+<x-subcat-index :cat="$cat" />
 </x-guset-layout>

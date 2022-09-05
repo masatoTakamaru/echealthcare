@@ -110,7 +110,7 @@ class ItemSeeder extends Seeder
                 for($i = 0; $i <= $item_number; $i++) {
                     DB::table('items')->insert([
                         'header' => '今なら' . rand(1,8) . '0%OFF!!',
-                        'name' => '製品' . $count . fake()->text(100),
+                        'name' => '製品' . $count . fake()->text(30),
                         'serial' => sprintf('%1$09d', $count),
                         'price' => rand(1, 99) * 100 + 98,
                         'inventory' => rand(0, 25),
