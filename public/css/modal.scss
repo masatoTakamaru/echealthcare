@@ -1,0 +1,39 @@
+.modal__container {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: auto;
+}
+
+.modal__overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.modal__body {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.modal__main {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 25px;
+}
+
+.modal__content {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    background: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+}

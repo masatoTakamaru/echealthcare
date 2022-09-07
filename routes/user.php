@@ -21,16 +21,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
+Route::get('/', 'App\Http\Controllers\IndexController@index')
+    ->name('index');
 
-Route::get('cateogry/{cat_id}/{subcat_id?}', 'App\Http\Controllers\CatController@index')->name('category');
+Route::get('cateogry/{cat_id}/{subcat_id?}', 'App\Http\Controllers\CatController@index')
+    ->name('category');
 
-Route::get('{id}/single', 'App\Http\Controllers\SingleController@index')->name('single');
+Route::get('{id}/single', 'App\Http\Controllers\SingleController@index')
+    ->name('single');
 
 Route::resource('/cart', 'App\Http\Controllers\CartController');
 
+Route::resource('/favorite', 'App\Http\Controllers\FavoriteController')
+    ->only(['index', 'store', 'destroy']);
+
+Route::get('search', 'App\Http\Controllers\SearchController@index')
+    ->name('search');
+
+Route::post('search', 'App\Http\Controllers\SearchController@search')
+    ->name('search');
+
 Route::middleware('auth')->group(function () {
-    Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('checkout');
+    Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')
+        ->name('checkout');
     Route::post('/checkout', 'App\Http\Controllers\CheckoutController@succeed')
         ->name('checkout.succeed');
     Route::resource('user', 'App\Http\Controllers\UserController')

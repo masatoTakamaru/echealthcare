@@ -28,9 +28,9 @@
     <div class="font-price text-lg mb-4">
         &yen{{ number_format($item->price) }}
     </div>
-    {{-- purchase form --}}
     <div class="mb-4 flex items-center">
         @if($max_quantity)
+            {{-- purchase form --}}
             <form action="{{ route('user.cart.store') }}" method="POST">
                 @csrf
 
@@ -49,9 +49,20 @@
             <p>在庫なし</p>
         @endif
         {{-- favorite --}}
-        <span class="border rounded-lg ml-2 border-gray-500">
-            <img class="h-10 w-10 py-2 px-2" src="{{ asset('icons/ui/favorite.svg') }}">
-        </span>
+        @if($favorite_id)
+            <form action="{{ route('user.favorite.destroy', ['favorite' => $favorite_id]) }}" method="POST">
+                @method('DELETE')
+                @csrf
+                <input type="image" class="h-10 w-10 mt-2 ml-2 py-2 px-2 border rounded" src="{{ asset('icons/ui/favorite-solid.svg') }}" alt="お気に入り登録済み">
+            </form>
+        @else
+            <form action="{{ route('user.favorite.store') }}" method="POST">
+                @csrf
+                <input type="hidden" name="item_id" value="{{ $item->id }}">
+                <input type="image" class="h-10 w-10 mt-2 ml-2 py-2 px-2 border rounded" src="{{ asset('icons/ui/favorite.svg') }}" alt="お気に入り">
+            </form>
+        @endif
+        </form>
     </div>
     <div>
         <span class="text-sm">シリアル番号&nbsp;:&nbsp;[{{ $item->serial }}]</span>

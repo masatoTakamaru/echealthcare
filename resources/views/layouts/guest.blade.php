@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/modal.css') }}" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body x-data="{ container: true, menu: false }">
@@ -23,7 +24,7 @@
                 </a>
             </div>
             <div class="mr-4">
-                <a class="relative" href="">
+                <a class="relative" href="{{ route('user.favorite.index') }}">
                     <img class="h-6 w-6 ml-auto mr-auto" src="{{ asset('icons/ui/favorite.svg') }}">
                     <p class="label-extra-small">お気に入り</p>
                 </a>
@@ -169,7 +170,30 @@
         </ul>
     </div>
 </nav>
+{{-- flash message --}}
+@if (session('flashmessage'))
+    <div x-data="{ open: true }">
+        <div class="modal__container" x-show="open">
+            <div @click="open = false" class="modal__overlay"></div>
+            <div class="modal__body">
+                <div class="modal__main">
+                    <div class="modal__content">
+                        <div class="flex justify-between items-center">
+                            <span>{{ session('flashheader') }}</span>
+                            <img @click="open = false" class="h-6 w-6" src="{{ asset('icons/ui/cancel.svg') }}">
+                        </div>
+                        <hr class="my-4">
+                        <p class="text-sm">{{ session('flashmessage') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+
+</script>
 </body>
 </html>

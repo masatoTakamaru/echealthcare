@@ -18,9 +18,7 @@ class CartController extends Controller
         if(Auth::id()) \Cart::session(Auth::id());
         $items = \Cart::getContent();
 
-        return view('cart.index', [
-            'items' => $items,
-        ]);
+        return view('cart.index', compact('items'));
     }
 
     /**

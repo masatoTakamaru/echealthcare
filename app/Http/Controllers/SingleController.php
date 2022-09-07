@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\Itemimage;
 
@@ -20,11 +21,26 @@ class SingleController extends Controller
         $item->inventory >= 20 ? $max_quantity = 20 : $max_quantity = $item->inventory;
         $cat = $item->subcat->cat;
 
+        //ユーザーがログイン済みで商品がお気に入りに登録されて
+        //いるかどうかを判定
+        if(Auth::id()) {
+            $favorite = Auth::user()->favorites()
+                            ->where('item_id', $item->id)->first();
+            if($favorite) {
+                $favorite_id = $favorite->id;
+            } else {
+                $favorite_id = null;
+            }
+        } else {
+            $favorite_id = null;
+        }
+
         return view('single', compact(
             'item',
             'mainimage_url',
             'max_quantity',
             'cat',
+            'favorite_id',
         ));
     }
 }

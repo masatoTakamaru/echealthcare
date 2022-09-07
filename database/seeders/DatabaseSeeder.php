@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ItemSeeder::class,
             ItemimageSeeder::class,
             RecommendSeeder::class,
+            FavoriteSeeder::class,
             AdminSeeder::class,
         ]);
     }
