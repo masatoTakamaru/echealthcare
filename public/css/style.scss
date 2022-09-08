@@ -1,6 +1,7 @@
 [x-cloak] { display: none !important; }
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Raleway:wght@300&display=swap');
+
 
 .font-railway {
     font-family: 'Raleway', sans-serif;
@@ -22,7 +23,11 @@ $color-primary: #ffa99f;
 .font-red { color: $color-red; }
 .font-brown { color: $color-red; }
 .font-darkbrown { color: $color-darkbrown; }
-.font-price { color: #b12704; font-weight: 700; }
+.font-price {
+    font-family: 'Lato', sans-serif;
+    color: #b12704;
+    font-weight: 700;
+}
 .font-primary { color: $color-blue; }
 .bg-pink { background-color: $color-pink; }
 .bg-yellow { background-color: $color-yellow; }
@@ -133,6 +138,14 @@ article {
 footer {
     p {
         font-size: 12px;
+    }
+}
+
+.table-layout {
+    display: table;
+    border-collapse: collapse;
+    div {
+        display: table-cell;
     }
 }
 

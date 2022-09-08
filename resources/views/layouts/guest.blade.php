@@ -18,14 +18,14 @@
         <a class="font-darkbrown" href="/">ECヘルスケア</a>
         <div class="inline-flex items-center">
             <div class="mr-4">
-                <a class="relative" href="">
+                <a class="relative" href="{{ route('user.search') }}">
                     <img class="h-6 w-6 ml-auto mr-auto" src="{{ asset('icons/ui/search.svg') }}">
                     <p class="label-extra-small">見つける</p>
                 </a>
             </div>
             <div class="mr-4">
                 <a class="relative" href="{{ route('user.favorite.index') }}">
-                    <img class="h-6 w-6 ml-auto mr-auto" src="{{ asset('icons/ui/favorite.svg') }}">
+                    <img class="h-6 w-6 ml-auto mr-auto" src="{{ asset('icons/ui/favorite.svg') }}" alt="お気に入り">
                     <p class="label-extra-small">お気に入り</p>
                 </a>
             </div>

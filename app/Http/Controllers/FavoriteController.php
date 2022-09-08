@@ -18,13 +18,19 @@ class FavoriteController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $favorites = $user->favorites();
+        if(Auth::id()) {
+            $user = Auth::user();
+            $favorites = $user->favorites()->paginate(10)->onEachSide(0);
+        } else {
+            session()->flash('flashheader', 'ログインが必要です');
+            session()->flash('flashmessage', '商品をお気に入りに登録するには、ログインが必要です。');
+            return back();
+        }
 
-        return view('favorite.index', [
-            'user' => $user,
-            'favorites' => $favorites->paginate(10)->onEachSide(0),
-        ]);
+        return view('favorite.index', compact(
+            'user',
+            'favorites',
+        ));
     }
 
     /**

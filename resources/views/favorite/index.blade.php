@@ -10,7 +10,7 @@
             <a class="mb-4" href="{{ route('user.single', [ 'id' => $favorite->item_id ]) }}">
                 <p>{{ $favorite->item->name }}</p>
             </a>
-            <p>&yen{{ number_format($favorite->item->price) }}</p>
+            <p class="font-price">&yen{{ number_format($favorite->item->price) }}</p>
             <p class="text-sm">在庫数&nbsp;:&nbsp;{{ $favorite->item->inventory }}</p>
             <form action="{{ route('user.favorite.destroy', ['favorite' => $favorite->id]) }}" method="POST">
                 @method('DELETE')
