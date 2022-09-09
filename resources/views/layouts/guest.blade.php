@@ -9,10 +9,11 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/modal.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/swiper-bundle.min.css') }}" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body x-data="{ container: true, menu: false }">
-<div class="container" x-show="container" x-transition>
+<div x-show="container" x-transition>
 <header class="navigation-header w-full bg-pink">
     <div class="h-16 px-6 flex justify-between items-center">
         <a class="font-darkbrown" href="/">ECヘルスケア</a>
@@ -49,7 +50,7 @@
 <!-- main -->
 <main>
     <!--top-logo-->
-    <div class="flex justify-center items-center p-2 top-logo">
+    <section class="flex justify-center items-center p-2 top-logo">
         <a href="/"><img class="p-2" src="{{ asset('top-logo.webp') }}"></a>
         <div class="h-full">
             <div class="border rounded shadow p-2 mr-2 h-full flex items-center" >
@@ -66,26 +67,10 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="flex flex-wrap md:flex-nowrap mb-12 justify-center">
-        <article class="p-2 mb-4 md:order-2">
-            {{ $slot }}
-        </article>
-        <aside>
-            <!-- カテゴリメニュー -->
-            <ul class="categories">
-            @foreach($cats as $cat)
-                <li class="category-name p-2">
-                    <a class="flex items-center" href="{{ route('user.category', ['cat_id'=>$cat->id]) }}">
-                        <p>{{ $cat->name }}&nbsp;</p>
-                        <img class="category-icon w-6" src="{{ asset('images/category/categoryIcon0' . $cat->id . '.webp') }} ">
-                    </a>
-                </li>
-            @endforeach
-            </ul>
-        </aside>
-    </div>
+    </section>
+    <section class="p-2 mb-4">
+        {{ $slot }}
+    </section>
 </main>
 <footer class="bg-pink p-4">
 <p>合同会社&nbsp;トナカイ</p>
@@ -190,10 +175,9 @@
         </div>
     </div>
 @endif
-<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
 
 </script>
+<script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
 </body>
 </html>

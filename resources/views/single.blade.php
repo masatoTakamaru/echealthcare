@@ -71,6 +71,7 @@
         {{ $item->spec }}
     </div>
 </section>
+{{-- way of payment --}}
 <section class="border p-2">
     <h2 class="text-sm">お支払い方法</h2>
     <div class="flex flex-wrap items-center">

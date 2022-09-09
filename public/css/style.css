@@ -79,6 +79,10 @@ body {
   font-family: ヒラギノ角ゴ Pro, Hiragino Kaku Gothic Pro, Hiragino Sans, Noto Sans CJK JP, Osaka, Meiryo, メイリオ, MS PGothic, ＭＳ Ｐゴシック, YuGothic, Yu Gothic, Hiragino Sans GB, Helvetica Neue, HelveticaNeue, Helvetica, Noto Sans, Roboto, Arial, Arial Unicode MS, sans-serif;
 }
 
+main {
+  max-width: 1180px;
+}
+
 .navigation-header {
   height: 65px;
 }
@@ -110,44 +114,8 @@ body {
   width: 48%;
 }
 
-.categories li {
-  border-bottom: lightgray 1px solid;
-  padding: 10px 10px;
-}
-.categories li:first-child {
-  border-top: lightgray 1px solid;
-}
-
 .font-alert {
   color: #b12704;
-}
-
-aside {
-  width: 100%;
-}
-
-article {
-  width: 100%;
-}
-
-.slick-slider {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.slick-arrow {
-  width: 30px;
-  border: lightgray 1px solid;
-  border-radius: 4px;
-}
-
-.slick-list {
-  margin: 0 4px;
-}
-
-.slick-slide {
-  padding: 0 4px;
 }
 
 .subcats li {
@@ -156,8 +124,8 @@ article {
 }
 
 .paginationContainer {
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 footer p {
@@ -172,15 +140,19 @@ footer p {
   display: table-cell;
 }
 
+.swiper {
+  max-width: 90%;
+  height: 300px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  --swiper-navigation-color: gray;
+}
+
 @media screen and (min-width: 768px) {
-  aside {
-    width: 256px;
-  }
-  article {
-    max-width: 900px;
-  }
-  .slick-slider {
-    width: 700px;
+  main {
+    margin: 0 auto;
   }
   .under-top-nav li {
     border-left: white 2px solid;

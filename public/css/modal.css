@@ -36,4 +36,13 @@
   background: #fff;
   padding: 20px;
   box-sizing: border-box;
+}
+
+@media screen and (min-width: 768px) {
+  .modal__body {
+    display: table;
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+  }
 }/*# sourceMappingURL=modal.css.map */

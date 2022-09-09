@@ -2,19 +2,19 @@
 <section>
 <form action="{{ route('user.search') }}" method="POST">
     @csrf
-    <div class="flex justify-between items-center">
-        <div class="table-layout">
-            <div>
-                <input class="py-2" type="text" name="keyword" max="50" placeholder="キーワードで探す (例) アイシャドウ" value="{{ $keyword }}">
+    <div class="flex">
+        <div class="flex-grow table-layout">
+            <div class="h-10 box-border border">
+                <input class="py-2 w-full border-none" type="text" name="keyword" max="255" placeholder="キーワードで探す (例) アイシャドウ" value="{{ $keyword }}">
             </div>
-            <div class="bg-blue w-10 text-center">
+            <div class="bg-blue w-10 h-10 text-center box-border">
                 <button class="align-middle" label="商品検索" type="submit">
                     <img class="h-6 w-6" src="{{ asset('icons/ui/search-white.svg') }}">
                 </button>
             </div>
         </div>
-        <a href="{{ url()->previous() }}">
-            <img class="h-8 w-8 mr-4" src="{{ asset('icons/ui/cancel.svg') }}">
+        <a class="mx-4" href="{{ url()->previous() }}">
+            <img class="h-8 w-8" src="{{ asset('icons/ui/cancel.svg') }}">
             <p class="label-extra-small">閉じる</p>
         </a>
     </div>
