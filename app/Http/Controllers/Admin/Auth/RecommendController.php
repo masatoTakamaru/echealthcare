@@ -19,20 +19,7 @@ class RecommendController extends Controller
     {
         $items = Recommend::all();
 
-        return view('admin.auth.recommend.index',[
-            'items' => $items,
-        ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $items = Item::all();
-        return view('admin.auth.recommend.create');
+        return view('admin.auth.recommend.index', compact('items'));
     }
 
     /**
@@ -43,41 +30,19 @@ class RecommendController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        try {
+            DB::beginTransaction();
+            $input = $request->only('item_id');
+            $recommend = Recommend::create($input);
+            DB::commit();
+            session()->flash('flashmessage', 'おすすめ商品として登録しました。');
+        } catch (\Throwable $e) {
+            \DB::rollback();
+            \Log::error($e);
+            throw $e;
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return back();
     }
 
     /**
@@ -88,6 +53,17 @@ class RecommendController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            Item::find($id)->delete();
+            DB::commit();
+            session()->flash('flashmessage', 'おすすめ商品の登録を解除しました');
+        } catch (\Throwable $e) {
+            \DB::rollback();
+            \Log::error($e);
+            throw $e;
+        }
+
+        return back();        
     }
 }

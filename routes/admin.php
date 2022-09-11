@@ -18,12 +18,18 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:admins')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
+
     Route::get('/user-index', [UserIndexController::class, 'index'])
         ->name('user-index');
-    Route::resource('recommend', RecommendController::class);
+
+    Route::resource('recommend', RecommendController::class)
+        ->only(['index', 'store', 'destroy']);
+
     Route::resource('item', ItemController::class);
+
     Route::put('item/{item}/primaryimage_update', [ItemController::class, 'primaryimage_update'])
         ->name('item.primaryimage_update');
+
     Route::resource('itemimage', ItemimageController::class);
 });
 

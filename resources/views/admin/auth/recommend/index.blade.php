@@ -1,6 +1,6 @@
 <x-app-layout>
 <h1>おすすめ商品</h1>
-<table class="border">
+<table>
 <thead class="bg-blue-200">
 <tr>
     <th>ID</th>
@@ -18,14 +18,14 @@
 @foreach($items as $item)
     <tr class="even:bg-gray-200">
         <td class="px-2 text-right">{{ $item->item->id }}</td>
-        <td>{{ $item->item->name }}</td>
-        <td>{{ $item->item->serial }}</td>
+        <td><a class="text-blue-600 underline" href="{{ route('admin.item.edit', ['item' => $item->item->id]) }}">{{ $item->item->name }}</a></td>
+        <td class="px-2">{{ $item->item->serial }}</td>
         <td class="text-right px-2">{{ number_format($item->item->price) }}</td>
         <td class="text-right px-2">{{ $item->item->inventory }}</td>
-        <td>{{ $item->item->subcat->cat->name }}</td>
-        <td>{{ $item->item->subcat->name }}</td>
-        <td>{{ $item->item->maker }}</td>
-        <td>{{ $item->created_at }}</td>
+        <td class="px-2">{{ $item->item->subcat->cat->name }}</td>
+        <td class="px-2">{{ $item->item->subcat->name }}</td>
+        <td class="px-2">{{ $item->item->maker }}</td>
+        <td class="px-2">{{ $item->created_at }}</td>
     </tr>
 @endforeach
 </tbody>

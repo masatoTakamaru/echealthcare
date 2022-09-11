@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Item;
 use App\Models\Itemimage;
 use App\Models\Cat;
+use App\Models\Recommend;
 
 class ItemController extends Controller
 {
@@ -124,12 +125,15 @@ class ItemController extends Controller
         for($i = 1; $i <= 5; $i++) {
             $item->itemimages()->where('image_id', $i)->first() ? $up_images[$i] = true : $up_images[$i] = false;
         }
+        //おすすめ商品の判定
+        Recommend::where('item_id', $id)->count() ? $recommend = true : $recommend = false;
 
         return view('admin.auth.item.edit', compact(
             'cats',
             'current_cat_id',
             'item',
             'up_images',
+            'recommend',
         ));
 
     }
@@ -209,6 +213,22 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            //画像ファイルの削除
+            Storage::disk('public')->deleteDirectory('/itemPhotos/' . $id);
+
+            Item::find($id)->delete();                        
+
+            DB::commit();
+            session()->flash('flashmessage', '商品を削除しました。');
+        } catch (\Throwable $e) {
+            \DB::rollback();
+            \Log::error($e);
+            throw $e;
+        }
+
+        return redirect()->route('admin.item.index');
     }
 }

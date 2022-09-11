@@ -9,6 +9,10 @@ class Recommend extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'item_id',
+    ];
+
     public function item()
     {
         return $this->belongsTo(Item::class);
