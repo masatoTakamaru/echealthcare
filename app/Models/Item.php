@@ -41,4 +41,20 @@ class Item extends Model
         return $this->hasMany(Favorite::class);
     }
 
+    public function recommends()
+    {
+        return $this->hasMany(Recommend::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($item) {
+            $item->itemimages()->delete();
+            $item->purchases()->delete();
+            $item->favorites()->delete();
+            $item->recommends()->delete();
+        });
+    }
+
 }

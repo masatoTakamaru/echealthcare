@@ -45,6 +45,9 @@ class RegisteredUserController extends Controller
             'address' => ['required', 'string', 'max:80'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'last_name_kana.regex' => '姓フリガナは全角カタカナで入力してください。',
+            'first_name_kana.regex' => '名フリガナは全角カタカナで入力してください。',
         ]);
 
         $user = User::create([
