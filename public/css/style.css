@@ -1,13 +1,4 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Raleway:wght@300&display=swap");
-[x-cloak] {
-  display: none !important;
-}
-
-.font-railway {
-  font-family: "Raleway", sans-serif;
-}
-
 .font-pink {
   color: #fcecee;
 }
@@ -70,33 +61,8 @@
   background-color: #ffa99f;
 }
 
-.label-extra-small {
-  font-size: 10px;
-  line-height: 12px;
-}
-
 body {
   font-family: ヒラギノ角ゴ Pro, Hiragino Kaku Gothic Pro, Hiragino Sans, Noto Sans CJK JP, Osaka, Meiryo, メイリオ, MS PGothic, ＭＳ Ｐゴシック, YuGothic, Yu Gothic, Hiragino Sans GB, Helvetica Neue, HelveticaNeue, Helvetica, Noto Sans, Roboto, Arial, Arial Unicode MS, sans-serif;
-}
-
-main {
-  max-width: 1180px;
-}
-
-.navigation-header {
-  height: 65px;
-}
-
-.shoppingcart-counter {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  color: white;
-  font-size: 10px;
-  padding: 1px 6px;
-  background-color: #b12704;
-  border-radius: 20px;
-  min-width: 1rem;
 }
 
 .popUpMenu li {

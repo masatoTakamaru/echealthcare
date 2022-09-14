@@ -57,9 +57,18 @@
         </div>
     </form>
 </div>
-
-
-    
+</section>
+<hr>
+<section>
+<h1 class="my-4">ユーザーの削除</h1>
+<div class="flex items-center justify-between">
+    <p>削除したユーザーはもとに戻せません。</p>
+    <form action="{{ route('user.user.destroy', ['user' => $user->id]) }}" method="POST">
+        @method('DELETE')
+        @csrf
+        <input id="userDelete" class="py-2 px-4 rounded bg-white border shadow" type="submit" value="ユーザーの削除">
+    </form>
+</div>
 </section>
 </x-guest-layout>
 
@@ -67,4 +76,9 @@
 document.querySelector('#updateButton').addEventListener('click', () => {
     if(!confirm('更新してもよろしいですか？')) return false;
 });
+
+document.querySelector('#userDelete').addEventListener('click', () => {
+    if(!confirm('削除してもよろしいですか？')) return event.preventDefault();
+});
+
 </script>

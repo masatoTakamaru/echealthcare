@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Raleway:wght@300&display=swap");
+[x-cloak] {
+  display: none !important;
+}
+
+.font-railway {
+  font-family: "Raleway", sans-serif;
+}
+
+.bg-pink {
+  background-color: #fcecee;
+}
+
+.header-nav {
+  width: 100%;
+  background-color: #fcecee;
+}
+.header-nav .header-nav-inner {
+  height: 64px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.header-nav .header-nav-inner .header-nav-menu {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: 8px;
+}
+.header-nav .header-nav-inner .header-nav-menu img {
+  height: 24px;
+  width: 24px;
+  margin: 0 auto;
+}
+.header-nav .header-nav-inner .header-nav-menu p {
+  font-size: 10px;
+}
+.header-nav .header-nav-inner .header-nav-menu .shoppingcart-icon {
+  position: relative;
+}
+.header-nav .header-nav-inner .header-nav-menu .shoppingcart-counter {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  color: white;
+  font-size: 10px;
+  padding: 1px 6px;
+  background-color: #b12704;
+  border-radius: 20px;
+  min-width: 1rem;
+}
+.header-nav .header-nav-inner .header-nav-menu .shoppingcart-counter span {
+  text-align: center;
+}
+
+main {
+  padding: 10px;
+  margin-bottom: 20px;
+  max-width: 1180px;
+}
+
+.footer-nav {
+  display: flex;
+  background-color: #fcecee;
+  padding: 10px;
+  font-size: 14px;
+}
+.footer-nav li {
+  margin: 8px 0;
+}
+.footer-nav .fotter-banner img {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.1);
+}/*# sourceMappingURL=guest.css.map */

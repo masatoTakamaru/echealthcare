@@ -1,0 +1,93 @@
+[x-cloak] { display: none !important; }
+
+//フォント
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Raleway:wght@300&display=swap');
+
+.font-railway {
+    font-family: 'Raleway', sans-serif;
+}
+
+//色の定義
+$color-pink: #fcecee;
+$color-darkbrown: rgb(139, 109, 37);
+
+//背景色
+.bg-pink { background-color: $color-pink; }
+
+//ヘッダーナビゲーション
+.header-nav {
+    width: 100%;
+    background-color: $color-pink;
+
+    .header-nav-inner {
+        height: 64px;
+        padding: 0 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        .header-nav-menu {
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            gap: 8px;
+
+            img {
+                height: 24px;
+                width: 24px;
+                margin: 0 auto;
+            }
+
+            p {
+                font-size: 10px;
+            }
+
+            .shoppingcart-icon {
+                position: relative;
+            }
+
+            .shoppingcart-counter {
+                position: absolute;
+                top: -5px;
+                right: -5px;
+                color: white;
+                font-size: 10px;
+                padding: 1px 6px;
+                background-color: #b12704;
+                border-radius: 20px;
+                min-width: 1rem;
+
+                span {
+                    text-align: center;
+                }
+            }            
+        }
+    }
+}
+
+//メイン
+main {
+    padding: 10px;
+    margin-bottom: 20px;
+    max-width: 1180px;
+}
+
+//フッター
+.footer-nav {
+    display: flex;
+    background-color: $color-pink;
+    padding: 10px;
+    font-size: 14px;
+
+    li {
+        margin: 8px 0;
+    }
+
+    .fotter-banner {
+        img {
+            border: 1px solid rgba(0,0,0,0.2);
+            box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.1);    
+        }
+    }
+}

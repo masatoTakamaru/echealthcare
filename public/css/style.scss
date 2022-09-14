@@ -1,11 +1,3 @@
-[x-cloak] { display: none !important; }
-
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Raleway:wght@300&display=swap');
-
-.font-railway {
-    font-family: 'Raleway', sans-serif;
-}
-
 $color-pink: #fcecee;
 $color-brightpink: rgb(252, 236, 238);
 $color-yellow: rgb(250, 248, 215);
@@ -35,33 +27,8 @@ $color-primary: #ffa99f;
 .bg-brown { background-color: $color-brown; }
 .bg-primary { background-color: $color-primary; }
 
-.label-extra-small { 
-    font-size: 10px;
-    line-height: 12px;
-}
-
 body {
     font-family: ヒラギノ角ゴ Pro,Hiragino Kaku Gothic Pro,Hiragino Sans,Noto Sans CJK JP,Osaka,Meiryo,メイリオ,MS PGothic,ＭＳ Ｐゴシック,YuGothic,Yu Gothic,Hiragino Sans GB,Helvetica Neue,HelveticaNeue,Helvetica,Noto Sans,Roboto,Arial,Arial Unicode MS,sans-serif;
-}
-
-main {
-    max-width: 1180px;
-}
-
-.navigation-header {
-    height: 65px;
-}
-
-.shoppingcart-counter {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    color: white;
-    font-size: 10px;
-    padding: 1px 6px;
-    background-color: #b12704;
-    border-radius: 20px;
-    min-width: 1rem;
 }
 
 .popUpMenu {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 class UserController extends Controller
@@ -52,5 +53,21 @@ class UserController extends Controller
     public function updatesucceed()
     {
         return view('user.updatesucceed');
+    }
+
+    public function destroy($id)
+    {
+        Auth::logout();
+        try {
+            DB::beginTransaction();
+            User::find($id)->delete();
+            DB::commit();
+        } catch (\Throwable $e) {
+            \DB::rollback();
+            \Log::error($e);
+            throw $e;
+        }
+        
+        return redirect()->route('user.index');
     }
 }

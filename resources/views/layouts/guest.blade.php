@@ -8,71 +8,89 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/guest.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/modal.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/swiper-bundle.min.css') }}" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body x-data="{ container: true, menu: false }">
 <div x-show="container" x-transition>
-<header class="navigation-header w-full bg-pink">
-    <div class="h-16 px-6 flex justify-between items-center">
-        <a class="font-darkbrown" href="/">ECヘルスケア</a>
-        <div class="inline-flex items-center">
-            <div class="mr-4">
-                <a class="relative" href="{{ route('user.search') }}">
-                    <img class="h-6 w-6 ml-auto mr-auto" src="{{ asset('icons/ui/search.svg') }}">
-                    <p class="label-extra-small">見つける</p>
-                </a>
-            </div>
-            <div class="mr-4">
-                <a class="relative" href="{{ route('user.favorite.index') }}">
-                    <img class="h-6 w-6 ml-auto mr-auto" src="{{ asset('icons/ui/favorite.svg') }}" alt="お気に入り">
-                    <p class="label-extra-small">お気に入り</p>
-                </a>
-            </div>
-            <div class="mr-4">
-                <a class="relative" href="{{ route('user.cart.index') }}">
-                    <img class="h-6 w-6 ml-auto mr-auto" src="{{ asset('icons/ui/cart.svg') }}">
-                    <div class="shoppingcart-counter">
-                        <span class="text-center">{{ $cart_items->count() }}</span>
-                    </div>
-                    <p class="label-extra-small">カート</p>
-                </a>
-            </div>
-            <button @click="container = false; menu = true">
-                <img class="h-6 w-6 ml-auto mr-auto" src="{{ asset('icons/ui/menu.svg') }}">
-                <p class="label-extra-small">メニュー</p>
-            </button>
-
+<header class="header-nav">
+<section class="header-nav-inner">
+    <a href="/">
+        <img src="{{ asset('header-logo.webp') }}" alt="ECヘルスケア">
+    </a>
+    <div class="header-nav-menu">
+        <div>
+            <a href="{{ route('user.search') }}">
+                <img src="{{ asset('icons/ui/search.svg') }}">
+                <p>見つける</p>
+            </a>
         </div>
+        <div>
+            <a href="{{ route('user.favorite.index') }}">
+                <img src="{{ asset('icons/ui/favorite.svg') }}" alt="お気に入り">
+                <p>お気に入り</p>
+            </a>
+        </div>
+        <div>
+            <a class="shoppingcart-icon" href="{{ route('user.cart.index') }}">
+                <img src="{{ asset('icons/ui/cart.svg') }}">
+                <div class="shoppingcart-counter">
+                    <span>{{ $cart_items->count() }}</span>
+                </div>
+                <p>カート</p>
+            </a>
+        </div>
+        <button @click="container = false; menu = true">
+            <img src="{{ asset('icons/ui/menu.svg') }}">
+            <p>メニュー</p>
+        </button>
     </div>
+</section>
 </header>
 <!-- main -->
 <main>
-    <!--top-logo-->
-    <section class="flex justify-center items-center p-2 top-logo">
-        <a href="/"><img class="p-2" src="{{ asset('top-logo.webp') }}"></a>
-        <div class="h-full">
-            <div class="border rounded shadow p-2 mr-2 h-full flex items-center" >
-                <img src="{{ asset('free-ship-logo.webp') }}">
-            </div>
-        </div>
-        <div class="h-full">
-            <div class="border rounded shadow p-2 h-full flex items-center">
-                <div>
-                    <img src="{{ asset('inquiry.webp') }}">
-                    <div class="mt-1 flex items-center justify-center">
-                        <a href="#"><img src="{{ asset('inquiry-mail.webp') }}" alt="お問い合わせ"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="p-2 mb-4">
-        {{ $slot }}
-    </section>
+    {{ $slot }}
 </main>
-<footer class="bg-pink p-4">
+<footer class="footer-nav">
+<section>
+    <div class="fotter-banner">
+        <img src="{{ asset('free-ship-logo.webp') }}">
+    </div>
+    <div class="footer-banner">
+        <div>
+            <img src="{{ asset('inquiry.webp') }}">
+            <div class="mt-1 flex items-center justify-center">
+                <a href="#"><img src="{{ asset('inquiry-mail.webp') }}" alt="お問い合わせ"></a>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <ul>
+        <li>
+            <a href="/">TOP</a>
+        </li>
+        <li>
+            <a href="#">店舗案内</a>
+        </li>
+        <li>
+            <a href="#">ご注文方法</a>
+        </li>
+        <li>
+            <a href="#">支払い方法</a>
+        </li>
+        <li>
+            <a href="#">配送方法</a>
+        </li>
+        <li>
+            <a href="#">よくあるご質問</a>
+        </li>
+    </ul>
+</section>
+
+
 <p>合同会社&nbsp;トナカイ</p>
 <p>〒859-4764&nbsp;長崎県松浦市御厨町狩原免6-7-28-104</p>
 <p>お問い合わせ&nbsp;:&nbsp;0955-12-3456</p>
