@@ -94,7 +94,7 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        if(Auth::id()) \Cart::session(Auth:id());
+        if(Auth::id()) \Cart::session(Auth::id());
         \Cart::remove($id);
 
         return redirect()->route('user.cart.index');

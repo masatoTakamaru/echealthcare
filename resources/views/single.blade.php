@@ -1,34 +1,22 @@
 <x-guest-layout>
-<section class="p-4">
-    <div class="py-2 font-bold">
-        {{ $item->name }}
-    </div>
-    <div class="flex justify-center">
-        <img class="w-full md:w-96 p-4" src="{{ asset('storage/itemPhotos/' . $mainimage_url) }}">
-    </div>
-    <div class="flex justify-center flex-wrap items-center">
+<section class="single-item">
+    <p class="item-header">{{ $item->header }}</p>
+    <img class="main-photo" src="{{ asset('storage/itemPhotos/' . $mainimage_url) }}">
+    <div class="other-photos">
         @foreach($item->itemimages as $image)
-            @if($image->url == $item->primaryimage_url)
-                <a class="m-1 border" href="{{ route('user.single', ['id' => $item->id, 'another' => $image->id]) }}">
-                    <img class="w-14 p-1" src="{{ asset('storage/itemPhotos/' . $image->url) }}">
-                </a>
-            @else
-                <a class="m-1 border" href="{{ route('user.single', ['id' => $item->id, 'another' => $image->id]) }}">
-                    <img class="w-14 p-1" src="{{ asset('storage/itemPhotos/' . $image->url) }}">
-                </a>
-            @endif
+            <a href="{{ route('user.single', ['id' => $item->id, 'another' => $image->id]) }}">
+                <img src="{{ asset('storage/itemPhotos/' . $image->url) }}">
+            </a>
         @endforeach
     </div>
-    <div class="font-brown font-bold my-2">
-        {{ $item->header }}
-    </div>
-    <div class="my-2 text-sm">
-        {{ $item->maker }}
-    </div>
-    <div class="font-price text-lg mb-4">
-        &yen{{ number_format($item->price) }}
-    </div>
-    <div class="mb-4 flex items-center">
+    <article>
+        <p class="item-name">{{ $item->name }}</p>
+        <p class="item-maker">{{ $item->maker }}</p>
+        <p>シリアル番号&nbsp;:&nbsp;[{{ $item->serial }}]</p>
+
+        <p class="item-price"><span>&yen{{ number_format($item->price) }}</span>&nbsp;税込</p>
+    </article>
+    <div class="purchase-form">
         @if($max_quantity)
             {{-- purchase form --}}
             <form action="{{ route('user.cart.store') }}" method="POST">
@@ -36,14 +24,12 @@
 
                 <input type="hidden" name="id" value="{{ $item->id }}">
                 <label for="quantity">数量&nbsp;:&nbsp;</label>
-                <select class="border-2 p-2 w-20" id="quantity" name="quantity">
+                <select id="quantity" name="quantity">
                     @for($i = 1; $i <= $max_quantity; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
                 </select>
-                <span class="ml-2 py-2 px-4 bg-primary rounded shadow">
-                    <input type="submit" value="カートに入れる" />
-                </span>
+                <input class="purchase-button" type="submit" value="カートに入れる" />
             </form>
         @else
             <p>在庫なし</p>
@@ -53,38 +39,42 @@
             <form action="{{ route('user.favorite.destroy', ['favorite' => $favorite_id]) }}" method="POST">
                 @method('DELETE')
                 @csrf
-                <input type="image" class="h-10 w-10 mt-2 ml-2 py-2 px-2 border rounded" src="{{ asset('icons/ui/favorite-solid.svg') }}" alt="お気に入り登録済み">
+                <div class="favorite">
+                    <div class="favorite-icon-wrapper">
+                        <input type="image" class="favorite-icon" src="{{ asset('icons/ui/favorite-solid.svg') }}" alt="お気に入り登録済み">
+                    </div>
+                    <p>お気に入り</p>
+                </div>
             </form>
         @else
             <form action="{{ route('user.favorite.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="item_id" value="{{ $item->id }}">
-                <input type="image" class="h-10 w-10 mt-2 ml-2 py-2 px-2 border rounded" src="{{ asset('icons/ui/favorite.svg') }}" alt="お気に入り">
+                <div class="favorite">
+                    <div class="favorite-icon-wrapper">
+                        <input type="image" class="favorite-icon" src="{{ asset('icons/ui/favorite.svg') }}" alt="お気に入り">
+                    </div>
+                    <p>お気に入り</p>
+                </div>
             </form>
         @endif
-        </form>
     </div>
-    <div>
-        <span class="text-sm">シリアル番号&nbsp;:&nbsp;[{{ $item->serial }}]</span>
-    </div>
-    <div class="text-justify">
+    <article>
         {{ $item->spec }}
+    </article>
+    {{-- way of payment --}}
+    <div class="way-of-payment">
+        <p>お支払い方法</p>
+        <div class="payment-icons">
+            <img src="{{ asset('icons/settlements/visa.svg') }}">
+            <img src="{{ asset('icons/settlements/master.svg') }}">
+            <img src="{{ asset('icons/settlements/jcb.webp') }}">
+            <img src="{{ asset('icons/settlements/paypay.webp') }}">
+            <img src="{{ asset('icons/settlements/rakutenpay.webp') }}">
+        </div>
     </div>
-</section>
-{{-- way of payment --}}
-<section class="border p-2">
-    <h2 class="text-sm">お支払い方法</h2>
-    <div class="flex flex-wrap items-center">
-        <img class="mx-4" src="{{ asset('icons/settlements/visa.svg') }}">
-        <img class="mx-4" src="{{ asset('icons/settlements/master.svg') }}">
-        <img class="mx-4" src="{{ asset('icons/settlements/jcb.webp') }}">
-        <img class="mx-4" src="{{ asset('icons/settlements/paypay.webp') }}">
-        <img class="mx-4" src="{{ asset('icons/settlements/rakutenpay.webp') }}">
-    </div>
-</section>
-{{-- social icons --}}
-<nav class="my-8">
-    <ul class="flex justify-center items-center">
+    {{-- social icons --}}
+    <ul class="social-icons">
         <li class="mx-4">
             <a class="text-xl font-darkbrown" href="//www.facebook.com/sharer/sharer.php?u={{ url()->current() }}&t=" target="_blank" rel="nofollow noopener noreferrer">
                 <img src="{{ asset('icons/social/facebook.svg') }}">
@@ -100,6 +90,6 @@
             </a>
         </li>
     </ul>
-</nav>
+</section>
 <x-subcat-index :cat="$cat" />
 </x-guest-layout>

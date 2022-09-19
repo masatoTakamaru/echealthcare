@@ -1,52 +1,44 @@
 <x-guest-layout>
-<section class="m-4">
+<section class="section-cart">
     <h1>ショッピングカート</h1>
-</section>
-<section class="m-4">
     @if($items->count() == 0)
-        <p class="font-alert">商品はありません。</p>
+        <p class="cart-empty-message">商品はありません。</p>
     @else
-        <table>
-        <tbody>
-        @foreach($items as $item)
-            <tr>
-            <td class="w-1/4 pr-4"><img src="{{ 'storage/itemPhotos/' . $item->associatedModel->itemimages->first()->url }}"></td>
-            <td>
-                <ul>
-                <li>{{ $item->name }}</li>
-                <li>個数&nbsp;:&nbsp;{{ $item->quantity }}</li>
-                @if($item->quantity == 1) 
-                    <li class="font-price">&yen{{ number_format($item->price) }}</li>
-                @else
-                    <li><span class="font-price">&yen{{ number_format($item->getPriceSum()) }}</span>(1個&nbsp;&yen{{ number_format($item->price) }})</li>
-                @endif
-                <li>
-                    <form action="{{ route('user.cart.destroy', ['cart' => $item->id]) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <div class="mb-4">
-                            <input class="text-sm border-2 py-1 px-4 rounded-lg" type="submit" value="削除">
-                        </div>
-                    </form>
-                </li>
-                </ul>
-            </td>
-            </tr>
-        @endforeach
-        <tr>
-        <td colspan="2"><hr></td>
-        </tr>
-        <tr>
-        <td></td>
-        <td>
-            <span>小計&nbsp;:&nbsp;</span><span class="font-price">&yen{{ number_format(Cart::getSubTotal()) }}</span>
-        </td>
-        </tr>
-        </tbody>
-        </table>
-        <div class="mt-8 my-4 text-center">
-            <a class="bg-primary py-2 px-10 rounded shadow" href="{{ route('user.checkout') }}">レジに進む</a>
+        <div class="cart-list">
+            @foreach($items as $item)
+                <div class="row-item">
+                    <img class="item-photo" src="{{ 'storage/itemPhotos/' . $item->associatedModel->itemimages->first()->url }}">
+                    <div class="item-description">
+                        <p>{{ $item->name }}</p>
+                        <p>個数&nbsp;:&nbsp;{{ $item->quantity }}</p>
+                        @if($item->quantity == 1) 
+                            <p>&yen{{ number_format($item->price) }}</p>
+                        @else
+                            <p class="font-price">&yen{{ number_format($item->getPriceSum()) }}(1個&nbsp;&yen{{ number_format($item->price) }})</p>
+                        @endif
+                        <form action="{{ route('user.cart.destroy', ['cart' => $item->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <input id="itemDelete" class="item-delete btn-cancel-mini" type="submit" value="削除">
+                        </form>
+                    </div>
+                </div>
+            @endforeach
+            <div class="row-total">
+                <p class="total-blank"></p>
+                <p class="total">小計&nbsp;:&nbsp;<span class="price">&yen{{ number_format(Cart::getSubTotal()) }}</span></p>
+            </div>
+        </div>
+        <div class="centered">
+            <a class="btn-primary" href="{{ route('user.checkout') }}">レジに進む</a>
         </div>
     @endif
 </section>
+<script>
+    document.querySelector('#itemDelete').addEventListener('click', (event) => {
+        if(!confirm("購入をキャンセルしますか？")) return event.preventDefault();
+    });
+</script>
 </x-guest-layout>
+

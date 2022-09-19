@@ -34,8 +34,8 @@
                 </div>
             @endforeach
         </div>
-        <section class="paginationContainer">
-            <div class="paginationWrapper">
+        <section class="pagination-container">
+            <div class="pagination-inner">
                 {{ $items->links('vendor.pagination.default') }}
             </div>
         </section>

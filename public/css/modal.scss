@@ -36,6 +36,25 @@
     background: #fff;
     padding: 20px;
     box-sizing: border-box;
+
+    hr {
+        margin: 8px 0;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+.modal__content__inner {
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+
+    img {
+        height: 24px;
+        width: 24px;
+    }
 }
 
 @media screen and (min-width: 768px) {

@@ -25,8 +25,8 @@
 </tr>
 @endforeach
 </table>
-<section class="paginationContainer mt-4">
-    <div class="paginationWrapper">
+<section class="pagination-container mt-4">
+    <div class="pagination-inner">
         {{ $users->links('vendor.pagination.default') }}
     </div>
 </section>

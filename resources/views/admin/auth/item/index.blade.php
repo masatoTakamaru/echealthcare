@@ -66,8 +66,8 @@
 </tbody>
 </table>
 </section>
-<section class="paginationContainer mt-4">
-    <div class="paginationWrapper">
+<section class="pagination-container mt-4">
+    <div class="pagination-inner">
         {{ $items->links('vendor.pagination.default') }}
     </div>
 </section>
