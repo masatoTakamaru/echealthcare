@@ -24,7 +24,7 @@
     <nav class="header-nav-menu">
         <div>
             <a href="{{ route('user.search') }}">
-                <img src="{{ asset('icons/ui/search.svg') }}">
+                <img type="image/svg+xml" src="{{ asset('icons/ui/search.svg') }}">
                 <p>見つける</p>
             </a>
         </div>
