@@ -26,9 +26,12 @@ class ItemimageSeeder extends Seeder
             $image_amount = rand(2,5);
             //製品写真をディレクトリにコピー
             for($i = 1; $i <= $image_amount; $i++) {
-                Storage::copy(
-                    'samplePhoto/sample' . rand(1, 16) . '.webp',
-                    '/public/itemPhotos/'. $item->id . '/'. $i . '.webp'
+                $url = __DIR__ . '/samplePhoto/sample' . rand(1, 16) . '.webp';
+                $file = file_get_contents($url);
+                Storage::put(
+                    '/public/itemPhotos/' . $item->id . '/' . $i . '.webp'
+                    ,
+                    $file,
                 );
                 DB::table('itemimages')->insert([
                     'item_id' => $item->id,
