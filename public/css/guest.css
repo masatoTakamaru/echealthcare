@@ -7,11 +7,6 @@ body {
   font-family: "Noto Sans JP", sans-serif;
 }
 
-.article-header {
-  font-size: 16px;
-  padding: 10px;
-}
-
 .section-inner {
   padding: 10px;
 }
@@ -39,6 +34,7 @@ body {
 
 .btn-cancel-mini {
   font-size: 14px;
+  margin: 3px 0;
   padding: 3px 12px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 4px;
@@ -195,12 +191,14 @@ main {
   right: 10px;
 }
 
-.section-parent .number-of-items {
+.number-of-items {
   padding: 10px 0 10px 15px;
   font-size: 14px;
 }
 
 .section-header {
+  padding: 10px 0 5px 0;
+  text-indent: 10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .section-header span {
@@ -208,13 +206,6 @@ main {
   font-size: 20px;
   color: #00c8f5;
   margin-right: 15px;
-}
-
-.category-header {
-  font-size: 18px;
-  padding: 20px 0 10px 0;
-  text-indent: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .item-container {
@@ -299,9 +290,12 @@ main {
   font-size: 14px;
 }
 
+.single-item {
+  padding: 10px;
+}
 .single-item .item-header {
   font-size: 16px;
-  padding: 10px 10px;
+  margin-bottom: 10px;
 }
 .single-item .main-photo {
   max-width: 400px;
@@ -322,36 +316,29 @@ main {
   width: 72px;
   padding: 4px;
 }
-.single-item article {
-  padding: 10px;
-}
-.single-item article .item-name {
+.single-item .item-name {
   font-size: 16px;
   font-weight: 700;
 }
-.single-item article .item-price {
-  margin: 15px 0;
+.single-item .item-price {
+  padding: 15px 0;
 }
-.single-item article .item-price span {
+.single-item .item-price span {
   font-size: 24px;
   font-weight: 700;
-  margin: 20px 0;
 }
 .single-item .purchase-form {
   display: flex;
   align-items: center;
-  margin: 0 10px;
+  margin: 10px 10px;
 }
 .single-item .purchase-form #quantity {
+  padding: 5px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   width: 5rem;
 }
-.single-item .purchase-form .purchase-button {
-  background-color: rgb(250, 232, 233);
+.single-item .purchase-form .btn-purchase {
   margin: 0 10px;
-  padding: 8px 15px;
-  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
 }
 .single-item .purchase-form .favorite .favorite-icon-wrapper .favorite-icon {
   display: block;
@@ -405,47 +392,21 @@ main {
 .section-cart .cart-empty-message {
   padding: 20px 10px;
 }
-.section-cart .procedure {
-  background-color: rgb(250, 232, 233);
-  box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
+.section-cart .photo-wrapper {
+  width: 160px;
 }
-.section-cart .cart-list {
-  display: table;
-  margin: 0 10px;
-}
-.section-cart .cart-list .row-item {
-  display: table-row;
-}
-.section-cart .cart-list .row-item .item-photo {
-  display: table-cell;
-  max-width: 150px;
+.section-cart .item-description {
   padding: 10px;
 }
-.section-cart .cart-list .row-item .item-description {
-  display: table-cell;
-  vertical-align: top;
-  padding: 10px;
-}
-.section-cart .cart-list .row-item .item-description p {
+.section-cart .item-description p {
   font-size: 14px;
 }
-.section-cart .cart-list .row-item .item-description .item-delete {
-  margin-top: 4px;
-}
-.section-cart .cart-list .row-total {
-  display: table-row;
-}
-.section-cart .cart-list .row-total .total-blank {
-  display: table-cell;
-}
-.section-cart .cart-list .row-total .total {
-  display: table-cell;
-  width: 100%;
+.section-cart .total {
   padding: 5px 0;
   font-size: 16px;
   border-top: 1px solid rgb(0, 0, 0);
 }
-.section-cart .cart-list .row-total .total .price {
+.section-cart .total .price {
   font-weight: 700;
 }
 
@@ -454,6 +415,49 @@ main {
 }
 .user-info h2 {
   padding: 10px 0;
+}
+
+.search .search-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.search .search-form .search-form-inner {
+  display: flex;
+  align-items: center;
+}
+.search .search-form .search-form-inner input {
+  height: 40px;
+  width: 400px;
+  border: 1px solid #00c8f5;
+  box-sizing: border-box;
+}
+.search .search-button {
+  height: 40px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-left: -1px;
+  padding: 3px 8px;
+  background-color: #00c8f5;
+  border: 1px solid #00c8f5;
+  box-sizing: border-box;
+}
+.search .search-button p {
+  font-size: 16px;
+  color: white;
+}
+.search .search-button img {
+  position: relative;
+  top: 2px;
+  width: 20px;
+}
+.search .cancel-button {
+  width: 28px;
+  height: 28px;
 }
 
 @media screen and (min-width: 768px) {

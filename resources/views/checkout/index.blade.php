@@ -1,16 +1,19 @@
 <x-guest-layout>
-<article>
-    <h1 class="article-header">注文内容を確認・変更する</h1>
-    <section>
-        <h1>お届け先住所</h1>
-        <p>{{ $user->last_name }}&nbsp;{{ $user->first_name }}</p>
-        <p>〒{{ sprintf('%s-%s', mb_substr($user->zip, 0, 3), mb_substr($user->zip, 3, 4)) }}</p>
-        <p>{{ $user->address }}</p>
-    </section>
-    <section>
+<section>
+    <div class="section-inner">
+        <h1>注文内容を確認・変更する</h1>
+        <div>
+            <h1>お届け先住所</h1>
+            <p>{{ $user->last_name }}&nbsp;{{ $user->first_name }}</p>
+            <p>〒{{ sprintf('%s-%s', mb_substr($user->zip, 0, 3), mb_substr($user->zip, 3, 4)) }}</p>
+            <p>{{ $user->address }}</p>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="section-inner">
         <h1>支払方法</h1>
         <p>以下からお選び下さい</p>
-        {{-- way of payment --}}
         <div class="boxed">
             <div class="way-of-payment">
                 <img src="{{ asset('icons/settlements/visa.svg') }}">
@@ -20,8 +23,10 @@
                 <img src="{{ asset('icons/settlements/rakutenpay.webp') }}">
             </div>
         </div>
-    </section>
-    <section>
+    </div>
+</section>
+<section>
+    <div class="section-inner">
         <form action="" method="POST">
             @csrf
             <h1>クレジットカード</h1>
@@ -39,6 +44,6 @@
                 </button>
             </div>
         </form>
-    </section>
-</article>
+    </div>
+</section>
 </x-guest-layout>

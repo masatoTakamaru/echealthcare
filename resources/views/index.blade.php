@@ -1,6 +1,6 @@
 <x-guest-layout>
 <!-- features -->
-<section class="section-parent">
+<section>
     <div class="swiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -22,7 +22,7 @@
     </div>
 </section>
 <!-- recommends -->
-<section class="section-parent">
+<section>
     <h1 class="section-header"><span>Recommends</span>おすすめ</h1>
     <x-item-list :items="$recommends" />
 </section>
@@ -37,30 +37,30 @@
     </div>
 </section>
 <!-- new items -->
-<section class="section-parent">
+<section>
     <h1 class="section-header"><span>New Items</span>新着商品</h1>
     <x-item-list :items="$new_items" :with_price="true" />
 </section>
 <!-- super-sub category -->
-<section class="section-parent">
+<section>
     <h1 class="section-header"><span>Category List</span>カテゴリーから探す</h1>
     <div class="cat-list">
-    @foreach($cats as $cat)
-        <div class="cat-items">
-            <div class="cat-header">
-                <a href="{{ route('user.category', ['cat_id'=>$cat->id]) }}">{{ $cat->name }}</a>
-                <img src="{{ asset('images/category/categoryIcon0' . $cat->id . '.webp') }} ">
-            </div>
-            <ul class="subcat-list">
-                @foreach($cat->subcats as $subcat)
-                    <li>
-                        <img src="{{ asset('icons/ui/chevron-right-gray.svg') }}">
-                        <a href="{{ route('user.category', ['cat_id' => $cat->id, 'subcat_id' => $subcat->id]) }}">{{ $subcat->name }}</a>
-                    </li>
-                @endforeach
-            </ul>
-        </div>          
-    @endforeach
+        @foreach($cats as $cat)
+            <div class="cat-items">
+                <div class="cat-header">
+                    <a href="{{ route('user.category', ['cat_id'=>$cat->id]) }}">{{ $cat->name }}</a>
+                    <img src="{{ asset('images/category/categoryIcon0' . $cat->id . '.webp') }} ">
+                </div>
+                <ul class="subcat-list">
+                    @foreach($cat->subcats as $subcat)
+                        <li>
+                            <img src="{{ asset('icons/ui/chevron-right-gray.svg') }}">
+                            <a href="{{ route('user.category', ['cat_id' => $cat->id, 'subcat_id' => $subcat->id]) }}">{{ $subcat->name }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>          
+        @endforeach
     </div>
 </section>
 </x-guest-layout>

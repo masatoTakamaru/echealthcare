@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('favicon.ico') }}" id="favicon">
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/swiper-bundle.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/guest.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/modal.css') }}" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body x-data="{ container: true, menu: false }">
 <div x-show="container" x-transition>

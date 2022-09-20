@@ -6,7 +6,6 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" href="{{ asset('favicon.ico') }}" id="favicon">
         <title>管理者</title>
-        <script src="https://cdn.tailwindcss.com"></script>
         <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])

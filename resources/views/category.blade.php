@@ -1,6 +1,6 @@
 <x-guest-layout>
-<section class="section-parent">
-    <h1 class="category-header">{{ $cat->name }}</h1>
+<section>
+    <h1 class="section-header">{{ $cat->name }}</h1>
     <p class="number-of-items">{{ $amount }}&nbsp;点の商品</p>
     <x-item-list :items="$items" />
 </section>
