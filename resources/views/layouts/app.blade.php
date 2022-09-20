@@ -7,8 +7,10 @@
         <link rel="icon" href="{{ asset('favicon.ico') }}" id="favicon">
         <title>管理者</title>
         <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <!-- Styles -->
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+         <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body>
         <div class="w-full min-h-screen bg-gray-100">
