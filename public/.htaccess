@@ -3,6 +3,11 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+    <ifModule mod_mime.c>
+        AddType image/svg+xml svg svgz
+        AddEncoding gzip svgz
+    </ifModule>
+
     RewriteEngine On
 
     # Handle Authorization Header
@@ -19,6 +24,4 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 
-    AddType image/svg+xml .svg .svgz
-    AddEncoding .gzip .svgz
 </IfModule>
