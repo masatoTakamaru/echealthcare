@@ -38,7 +38,7 @@ Route::resource('/favorite', 'App\Http\Controllers\FavoriteController')
 Route::get('search', 'App\Http\Controllers\SearchController@index')
     ->name('search');
 
-Route::post('search', 'App\Http\Controllers\SearchController@search')
+Route::get('search', 'App\Http\Controllers\SearchController@search')
     ->name('search');
 
 Route::middleware('auth')->group(function () {

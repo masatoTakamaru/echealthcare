@@ -73,7 +73,7 @@ body {
   white-space: nowrap;
   gap: 8px;
 }
-.header-nav .header-nav-inner .header-nav-menu img {
+.header-nav .header-nav-inner .header-nav-menu svg {
   height: 24px;
   width: 24px;
   margin: 0 auto;
@@ -163,7 +163,7 @@ main {
 }
 .popUpMenu .cancel-button {
   height: 28px;
-  margin: 20px 20px 0 auto;
+  margin: 20px 40px 0 auto;
 }
 .popUpMenu .login {
   display: flex;
@@ -184,7 +184,7 @@ main {
 .popUpMenu .category-list {
   position: relative;
 }
-.popUpMenu .category-list img {
+.popUpMenu .category-list svg {
   position: absolute;
   height: 24px;
   top: 0;
@@ -340,11 +340,14 @@ main {
 .single-item .purchase-form .btn-purchase {
   margin: 0 10px;
 }
+.single-item .purchase-form .favorite .favorite-icon-wrapper {
+  text-align: center;
+  line-height: 0;
+}
 .single-item .purchase-form .favorite .favorite-icon-wrapper .favorite-icon {
   display: block;
   height: 32px;
   width: 32px;
-  margin: 0 auto;
   padding: 5px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 2px;
@@ -458,6 +461,14 @@ main {
 .search .cancel-button {
   width: 28px;
   height: 28px;
+}
+.search .result {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.search .result .item {
+  width: 150px;
 }
 
 @media screen and (min-width: 768px) {

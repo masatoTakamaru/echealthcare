@@ -81,7 +81,7 @@ $color-darkbrown: rgb(139, 109, 37);
             white-space: nowrap;
             gap: 8px;
 
-            img {
+            svg {
                 height: 24px;
                 width: 24px;
                 margin: 0 auto;
@@ -190,7 +190,7 @@ main {
 
     .cancel-button {
         height: 28px;
-        margin: 20px 20px 0 auto;
+        margin: 20px 40px 0 auto;
     }
 
     .login {
@@ -216,7 +216,7 @@ main {
     .category-list {
         position: relative;
         
-        img {
+        svg {
             position: absolute;
             height: 24px;
             top: 0;
@@ -402,11 +402,13 @@ main {
 
         .favorite {
             .favorite-icon-wrapper {
+                text-align: center;
+                line-height: 0;
+
                 .favorite-icon {
                     display: block;
                     height: 32px;
                     width: 32px;
-                    margin: 0 auto;
                     padding: 5px;
                     border: 1px solid rgba(0,0,0,0.1);
                     border-radius: 2px;    
@@ -548,6 +550,16 @@ main {
     .cancel-button {
         width: 28px;
         height: 28px;
+    }
+
+    .result {
+        display:flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .item {
+            width: 150px;
+        }
     }
 }
 
