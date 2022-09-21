@@ -24,13 +24,13 @@
     <nav class="header-nav-menu">
         <div>
             <a href="{{ route('user.search') }}">
-                <img type="image/svg+xml" src="{{ asset('icons/ui/search.svg') }}">
+                <embed type="image/svg+xml" src="{{ asset('icons/ui/search.svg') }}">
                 <p>見つける</p>
             </a>
         </div>
         <div>
             <a href="{{ route('user.favorite.index') }}">
-                <img src="{{ asset('icons/ui/favorite.svg') }}" alt="お気に入り">
+                <img src="{{ asset('icons/ui/favorite.svg') }}">
                 <p>お気に入り</p>
             </a>
         </div>
