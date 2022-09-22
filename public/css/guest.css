@@ -19,10 +19,18 @@ body {
 }
 
 .way-of-payment {
+  margin: 15px 15px;
+  padding: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.way-of-payment p {
+  font-size: 14px;
+}
+.way-of-payment .payment-icons {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
-  padding: 10px;
 }
 
 .btn-primary {
@@ -354,19 +362,6 @@ main {
 }
 .single-item .purchase-form .favorite p {
   font-size: 10px;
-}
-.single-item .way-of-payment {
-  margin: 15px 15px;
-  padding: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-.single-item .way-of-payment p {
-  font-size: 14px;
-}
-.single-item .way-of-payment .payment-icons {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 .single-item .social-icons {
   display: flex;

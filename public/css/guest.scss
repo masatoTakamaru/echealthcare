@@ -25,10 +25,20 @@ $color-darkbrown: rgb(139, 109, 37);
 }
 
 .way-of-payment {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
+    margin: 15px 15px;
+    padding: 5px;
+    border: 1px solid rgba(0,0,0,0.1);
+
+    p {
+        font-size: 14px;
+    }
+
+    .payment-icons {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 }
 
 .btn-primary {
@@ -418,22 +428,6 @@ main {
             p {
                 font-size: 10px;
             }
-        }
-    }
-
-    .way-of-payment {
-        margin: 15px 15px;
-        padding: 5px;
-        border: 1px solid rgba(0,0,0,0.1);
-    
-        p {
-            font-size: 14px;
-        }
-    
-        .payment-icons {
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
     }
 
