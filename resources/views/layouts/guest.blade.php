@@ -24,25 +24,19 @@
     <nav class="header-nav-menu">
         <div>
             <a href="{{ route('user.search') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                </svg>
+                <img src="{{ asset('/images/ui/search.svg') }}">
                 <p>見つける</p>
             </a>
         </div>
         <div>
             <a href="{{ route('user.favorite.index') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                </svg>
+                <img src="{{ asset('/images/ui/favorite.svg') }}">
                 <p>お気に入り</p>
             </a>
         </div>
         <div>
             <a class="shoppingcart-icon" href="{{ route('user.cart.index') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                </svg>
+                <img src="{{ asset('/images/ui/cart.svg') }}">
                 <div class="shoppingcart-counter">
                     <span>{{ $cart_items->count() }}</span>
                 </div>
@@ -50,9 +44,7 @@
             </a>
         </div>
         <button @click="container = false; menu = true">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
+            <img src="{{ asset('/images/ui/menu.svg') }}">
             <p>メニュー</p>
         </button>
     </nav>
@@ -114,18 +106,14 @@
 <nav x-cloak x-show="menu" x-transition id="popUpMenu" class="popUpMenu">
     <div>
         <div>
-            <svg @click="container = true; menu = false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="cancel-button w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <img @click="container = true; menu = false" class="cancel-button" src="{{ asset('images/ui/cancel.svg') }}">
         </div>
         <ul>
         @unless(Auth::id())
             <li>
                 <a class="login" href="{{ route('user.login') }}">
                     <span>ログイン&nbsp;</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-                    </svg>
+                    <img src="{{ asset('images/ui/login.svg') }}">
                 </a>
             </li>
             <li>
@@ -138,9 +126,7 @@
             </li>
             <li>
                 <a class="my-account" href="{{ route('user.user.edit', ['user' => Auth::user()->id]) }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
+                    <img src="{{ asset('/images/ui/user-circle.svg') }}">
                     <span>マイアカウント</span>
                 </a>
             </li>
@@ -148,9 +134,7 @@
                 <form action="{{ route('user.logout')}}" method="POST">
                     @csrf
                     <div class="logout">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-                        </svg>
+                        <img src="{{ asset('/images/ui/logout.svg') }}">
                         <input type="submit" value="ログアウト">
                     </div>
                 </form>
@@ -165,9 +149,7 @@
                     <a href="{{ route('user.category', ['cat_id' => $cat->id]) }}">
                         <div class="category-list">
                             <span>{{ $cat->name }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#888" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                            </svg>
+                            <img src="{{ asset('/images/ui/chevron-right-gray.svg') }}">
                         </div>
                     </a>
                 </li>
@@ -206,9 +188,7 @@
                     <div class="modal__content">
                         <div class="modal__content__inner">
                             <span>{{ session('flashheader') }}</span>
-                            <svg @click="open = false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
+                            <img @click="open = false" src="{{ asset('/images/ui/cancel.svg') }}">
                         </div>
                         <hr>
                         <p>{{ session('flashmessage') }}</p>

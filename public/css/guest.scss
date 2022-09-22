@@ -91,7 +91,7 @@ $color-darkbrown: rgb(139, 109, 37);
             white-space: nowrap;
             gap: 8px;
 
-            svg {
+            img {
                 height: 24px;
                 width: 24px;
                 margin: 0 auto;
@@ -226,7 +226,7 @@ main {
     .category-list {
         position: relative;
         
-        svg {
+        img {
             position: absolute;
             height: 24px;
             top: 0;
@@ -359,7 +359,7 @@ main {
     }
 
     .main-photo {
-        max-width: 400px;
+        max-width: 340px;
         margin: 0 auto;
     }
 
@@ -398,6 +398,8 @@ main {
     .purchase-form {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
         margin: 10px 10px;
 
         #quantity {
@@ -585,4 +587,23 @@ main {
             margin: -1px 10px 0 10px;
         }
     }
+}
+
+@media screen and (max-width: 400px) {
+    .single-item {
+        .purchase-form {
+            justify-content: center;
+        }
+    }
+
+    .search {
+        .search-form {
+            .search-form-inner {
+                input {
+                    width: 200px;
+                }
+            }
+        }
+    }
+
 }
